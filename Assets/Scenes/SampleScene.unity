@@ -426,97 +426,132 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1630247418
-GameObject:
+--- !u!1001 &6364074685073650133
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1630247420}
-  - component: {fileID: 1630247419}
-  m_Layer: 0
-  m_Name: MusicPlayer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1630247419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1630247418}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7b6d332a98af0844b322601869349d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jsonPartition: "{\n    \"blocks\": [\n        {\"type\": \"note\", \"value\": \"E5\",
-    \"duration\": \"noire\"},\n        {\"type\": \"note\", \"value\": \"D#5\", \"duration\":
-    \"noire\"},\n        {\"type\": \"note\", \"value\": \"E5\", \"duration\": \"noire\"},\n       
-    {\"type\": \"note\", \"value\": \"B5\", \"duration\": \"noire\"},\n        {\"type\":
-    \"chord\", \"value\": \"|A4|E4|A4|\", \"duration\": \"ronde\"},\n        \n       
-    {\"type\": \"note\", \"value\": \"B4\", \"duration\": \"ronde\"},\n        {\"type\":
-    \"note\", \"value\": \"E5\", \"duration\": \"noire\"},\n        {\"type\": \"note\",
-    \"value\": \"G#5\", \"duration\": \"noire\"},\n        {\"type\": \"note\", \"value\":
-    \"B5\", \"duration\": \"noire\"},\n        {\"type\": \"note\", \"value\": \"C5\",
-    \"duration\": \"noire\"},\n        {\"type\": \"note\", \"value\": \"A5\", \"duration\":
-    \"noire\"},\n        \n        {\"type\": \"note\", \"value\": \"E5\", \"duration\":
-    \"noire\"},\n        {\"type\": \"note\", \"value\": \"D#5\", \"duration\": \"noire\"},\n       
-    {\"type\": \"note\", \"value\": \"E5\", \"duration\": \"noire\"},\n        {\"type\":
-    \"note\", \"value\": \"D5\", \"duration\": \"noire\"},\n        \n        {\"type\":
-    \"chord\", \"value\": \"|A4|E4|A4|\", \"duration\": \"ronde\"},\n        {\"type\":
-    \"note\", \"value\": \"B4\", \"duration\": \"ronde\"},\n        {\"type\": \"note\",
-    \"value\": \"E5\", \"duration\": \"noire\"},\n        {\"type\": \"note\", \"value\":
-    \"C5\", \"duration\": \"noire\"},\n        \n        {\"type\": \"note\", \"value\":
-    \"A5\", \"duration\": \"noire\"},\n        {\"type\": \"note\", \"value\": \"E5\",
-    \"duration\": \"noire\"},\n        {\"type\": \"note\", \"value\": \"G#5\", \"duration\":
-    \"noire\"},\n        \n        {\"type\": \"chord\", \"value\": \"|A4|E4|A4|\",
-    \"duration\": \"ronde\"},\n        \n        {\"type\": \"note\", \"value\":
-    \"B4\", \"duration\": \"ronde\"},\n        {\"type\": \"note\", \"value\": \"C5\",
-    \"duration\": \"noire\"},\n        {\"type\": \"note\", \"value\": \"D5\", \"duration\":
-    \"noire\"},\n        {\"type\": \"note\", \"value\": \"E5\", \"duration\": \"noire\"},\n       
-    \n        {\"type\": \"chord\", \"value\": \"|G4|G4|B4|\", \"duration\": \"ronde\"},\n       
-    \n        {\"type\": \"note\", \"value\": \"C5\", \"duration\": \"ronde\"},\n       
-    {\"type\": \"note\", \"value\": \"E5\", \"duration\": \"noire\"},\n        {\"type\":
-    \"note\", \"value\": \"D5\", \"duration\": \"noire\"},\n        {\"type\": \"note\",
-    \"value\": \"C5\", \"duration\": \"noire\"},\n        \n        {\"type\": \"chord\",
-    \"value\": \"|B4|E4|G4|\", \"duration\": \"ronde\"},\n        {\"type\": \"note\",
-    \"value\": \"A4\", \"duration\": \"noire\"},\n        {\"type\": \"note\", \"value\":
-    \"E4\", \"duration\": \"noire\"},\n        {\"type\": \"note\", \"value\": \"A4\",
-    \"duration\": \"noire\"}\n    ]\n}\n"
-  notes:
-  - {fileID: 8300000, guid: 4c5c68fc92e5e0d4c9019469a833a311, type: 3}
-  - {fileID: 0}
-  - {fileID: 8300000, guid: dbb1837c7d929f44ca5416a02d3a4af7, type: 3}
-  - {fileID: 8300000, guid: 9cd369b34d9d550479d3f86c075bc825, type: 3}
-  - {fileID: 8300000, guid: 65d19fe836254fc47ac33d1489a47a9c, type: 3}
-  - {fileID: 8300000, guid: ffb134a7cc537d9489ffd25a4689a80d, type: 3}
-  - {fileID: 8300000, guid: fb3b0600efe27ad488ed30dd759d1b0b, type: 3}
-  - {fileID: 8300000, guid: 89ff51ebdc3c9014484c725dd5da6869, type: 3}
-  - {fileID: 8300000, guid: 3e02dfe42b9a4de4dacd919fa503aaad, type: 3}
-  - {fileID: 8300000, guid: dfdd89cacafca6e488ac4fa9c90ea8ce, type: 3}
-  - {fileID: 8300000, guid: abb7332c7015e964184c0a871a9070ac, type: 3}
-  tempo: 250
---- !u!4 &1630247420
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1630247418}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2103720649432397238, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
+      propertyPath: m_Name
+      value: MusicPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 3852774050065531575, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3852774050065531575, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3852774050065531575, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3852774050065531575, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3852774050065531575, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3852774050065531575, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3852774050065531575, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3852774050065531575, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3852774050065531575, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3852774050065531575, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
+      propertyPath: tempo
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
+      propertyPath: playMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
+      propertyPath: trackMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
+      propertyPath: currentMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
+      propertyPath: jsonPartition
+      value: "{\n  \"blocks\": [\n    {\n      \"type\": \"chord\",\n      \"value\":
+        \"|CSharp4|E4|GSharp4|\",\n      \"duration\": \"blanche\"\n    },\n    {\n     
+        \"type\": \"note\",\n      \"value\": \"GSharp4\",\n      \"duration\": \"noire\"\n   
+        },\n    {\n      \"type\": \"note\",\n      \"value\": \"FSharp4\",\n     
+        \"duration\": \"croche\"\n    },\n    {\n      \"type\": \"note\",\n     
+        \"value\": \"E4\",\n      \"duration\": \"croche\"\n    },\n    \n    {\n     
+        \"type\": \"chord\",\n      \"value\": \"|CSharp4|E4|GSharp4|\",\n      \"duration\":
+        \"blanche\"\n    },\n    {\n      \"type\": \"note\",\n      \"value\": \"E4\",\n     
+        \"duration\": \"noire\"\n    },\n    {\n      \"type\": \"note\",\n     
+        \"value\": \"DSharp4\",\n      \"duration\": \"croche\"\n    },\n    {\n     
+        \"type\": \"note\",\n      \"value\": \"CSharp4\",\n      \"duration\": \"croche\"\n   
+        },\n    \n    {\n      \"type\": \"chord\",\n      \"value\": \"|GSharp3|CSharp4|E4|\",\n     
+        \"duration\": \"blanche\"\n    },\n    {\n      \"type\": \"note\",\n     
+        \"value\": \"CSharp4\",\n      \"duration\": \"noire\"\n    },\n    {\n     
+        \"type\": \"note\",\n      \"value\": \"DSharp4\",\n      \"duration\": \"croche\"\n   
+        },\n    {\n      \"type\": \"note\",\n      \"value\": \"E4\",\n      \"duration\":
+        \"croche\"\n    },\n    \n    {\n      \"type\": \"chord\",\n      \"value\":
+        \"|FSharp3|A3|CSharp4|\",\n      \"duration\": \"blanche\"\n    },\n    {\n     
+        \"type\": \"note\",\n      \"value\": \"A3\",\n      \"duration\": \"noire\"\n   
+        },\n    {\n      \"type\": \"note\",\n      \"value\": \"GSharp3\",\n     
+        \"duration\": \"croche\"\n    },\n    {\n      \"type\": \"note\",\n     
+        \"value\": \"FSharp3\",\n      \"duration\": \"croche\"\n    },\n    \n   
+        {\n      \"type\": \"chord\",\n      \"value\": \"|CSharp4|E4|GSharp4|\",\n     
+        \"duration\": \"blanche\"\n    },\n    {\n      \"type\": \"note\",\n     
+        \"value\": \"GSharp4\",\n      \"duration\": \"noire\"\n    },\n    {\n     
+        \"type\": \"note\",\n      \"value\": \"A4\",\n      \"duration\": \"croche\"\n   
+        },\n    {\n      \"type\": \"note\",\n      \"value\": \"B4\",\n      \"duration\":
+        \"croche\"\n    },\n    \n    {\n      \"type\": \"chord\",\n      \"value\":
+        \"|CSharp4|E4|GSharp4|\",\n      \"duration\": \"blanche\"\n    },\n    {\n     
+        \"type\": \"note\",\n      \"value\": \"B4\",\n      \"duration\": \"noire\"\n   
+        },\n    {\n      \"type\": \"note\",\n      \"value\": \"A4\",\n      \"duration\":
+        \"croche\"\n    },\n    {\n      \"type\": \"note\",\n      \"value\": \"GSharp4\",\n     
+        \"duration\": \"croche\"\n    },\n    \n    {\n      \"type\": \"chord\",\n     
+        \"value\": \"|GSharp3|CSharp4|E4|\",\n      \"duration\": \"blanche\"\n   
+        },\n    {\n      \"type\": \"note\",\n      \"value\": \"CSharp4\",\n     
+        \"duration\": \"noire\"\n    },\n    {\n      \"type\": \"note\",\n     
+        \"value\": \"DSharp4\",\n      \"duration\": \"croche\"\n    },\n    {\n     
+        \"type\": \"note\",\n      \"value\": \"E4\",\n      \"duration\": \"croche\"\n   
+        },\n    \n    {\n      \"type\": \"chord\",\n      \"value\": \"|FSharp3|A3|CSharp4|\",\n     
+        \"duration\": \"blanche\"\n    },\n    {\n      \"type\": \"note\",\n     
+        \"value\": \"A3\",\n      \"duration\": \"noire\"\n    },\n    {\n      \"type\":
+        \"note\",\n      \"value\": \"GSharp3\",\n      \"duration\": \"croche\"\n   
+        },\n    {\n      \"type\": \"note\",\n      \"value\": \"FSharp3\",\n     
+        \"duration\": \"croche\"\n    },\n    \n    {\n      \"type\": \"chord\",\n     
+        \"value\": \"|CSharp4|E4|GSharp4|\",\n      \"duration\": \"ronde\"\n   
+        }\n  ]\n}\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
+      propertyPath: currentTonalite
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -524,4 +559,4 @@ SceneRoots:
   - {fileID: 330585546}
   - {fileID: 410087041}
   - {fileID: 832575519}
-  - {fileID: 1630247420}
+  - {fileID: 6364074685073650133}
