@@ -455,7 +455,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7b6d332a98af0844b322601869349d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  partition: E5_D#5_E5_D#5_E5_B4_D5_C5_A4_|C4,E4,A4|_A4_C4_E4_A4_E4_A4_D5_F5_A5_E5_D#5_E5_D#5_E5_B4_D5_C5_A4_|C4,E4,A4|_A4_C4_E4_A4_E4_C5_B4_
+  jsonPartition: "{\n    \"blocks\": [\n        {\"type\": \"note\", \"value\": \"E5\",
+    \"duration\": \"noire\"},\n        {\"type\": \"note\", \"value\": \"D#5\", \"duration\":
+    \"noire\"},\n        {\"type\": \"note\", \"value\": \"E5\", \"duration\": \"noire\"},\n       
+    {\"type\": \"note\", \"value\": \"B5\", \"duration\": \"noire\"},\n        {\"type\":
+    \"chord\", \"value\": \"|A4|E4|A4|\", \"duration\": \"ronde\"},\n        \n       
+    {\"type\": \"note\", \"value\": \"B4\", \"duration\": \"ronde\"},\n        {\"type\":
+    \"note\", \"value\": \"E5\", \"duration\": \"noire\"},\n        {\"type\": \"note\",
+    \"value\": \"G#5\", \"duration\": \"noire\"},\n        {\"type\": \"note\", \"value\":
+    \"B5\", \"duration\": \"noire\"},\n        {\"type\": \"note\", \"value\": \"C5\",
+    \"duration\": \"noire\"},\n        {\"type\": \"note\", \"value\": \"A5\", \"duration\":
+    \"noire\"},\n        \n        {\"type\": \"note\", \"value\": \"E5\", \"duration\":
+    \"noire\"},\n        {\"type\": \"note\", \"value\": \"D#5\", \"duration\": \"noire\"},\n       
+    {\"type\": \"note\", \"value\": \"E5\", \"duration\": \"noire\"},\n        {\"type\":
+    \"note\", \"value\": \"D5\", \"duration\": \"noire\"},\n        \n        {\"type\":
+    \"chord\", \"value\": \"|A4|E4|A4|\", \"duration\": \"ronde\"},\n        {\"type\":
+    \"note\", \"value\": \"B4\", \"duration\": \"ronde\"},\n        {\"type\": \"note\",
+    \"value\": \"E5\", \"duration\": \"noire\"},\n        {\"type\": \"note\", \"value\":
+    \"C5\", \"duration\": \"noire\"},\n        \n        {\"type\": \"note\", \"value\":
+    \"A5\", \"duration\": \"noire\"},\n        {\"type\": \"note\", \"value\": \"E5\",
+    \"duration\": \"noire\"},\n        {\"type\": \"note\", \"value\": \"G#5\", \"duration\":
+    \"noire\"},\n        \n        {\"type\": \"chord\", \"value\": \"|A4|E4|A4|\",
+    \"duration\": \"ronde\"},\n        \n        {\"type\": \"note\", \"value\":
+    \"B4\", \"duration\": \"ronde\"},\n        {\"type\": \"note\", \"value\": \"C5\",
+    \"duration\": \"noire\"},\n        {\"type\": \"note\", \"value\": \"D5\", \"duration\":
+    \"noire\"},\n        {\"type\": \"note\", \"value\": \"E5\", \"duration\": \"noire\"},\n       
+    \n        {\"type\": \"chord\", \"value\": \"|G4|G4|B4|\", \"duration\": \"ronde\"},\n       
+    \n        {\"type\": \"note\", \"value\": \"C5\", \"duration\": \"ronde\"},\n       
+    {\"type\": \"note\", \"value\": \"E5\", \"duration\": \"noire\"},\n        {\"type\":
+    \"note\", \"value\": \"D5\", \"duration\": \"noire\"},\n        {\"type\": \"note\",
+    \"value\": \"C5\", \"duration\": \"noire\"},\n        \n        {\"type\": \"chord\",
+    \"value\": \"|B4|E4|G4|\", \"duration\": \"ronde\"},\n        {\"type\": \"note\",
+    \"value\": \"A4\", \"duration\": \"noire\"},\n        {\"type\": \"note\", \"value\":
+    \"E4\", \"duration\": \"noire\"},\n        {\"type\": \"note\", \"value\": \"A4\",
+    \"duration\": \"noire\"}\n    ]\n}\n"
   notes:
   - {fileID: 8300000, guid: 4c5c68fc92e5e0d4c9019469a833a311, type: 3}
   - {fileID: 0}
@@ -468,7 +501,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3e02dfe42b9a4de4dacd919fa503aaad, type: 3}
   - {fileID: 8300000, guid: dfdd89cacafca6e488ac4fa9c90ea8ce, type: 3}
   - {fileID: 8300000, guid: abb7332c7015e964184c0a871a9070ac, type: 3}
-  tempo: 120
+  tempo: 250
 --- !u!4 &1630247420
 Transform:
   m_ObjectHideFlags: 0

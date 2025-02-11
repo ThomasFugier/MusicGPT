@@ -1,0 +1,71 @@
+Here’s a detailed description of the system used to write music scores in your script. This system can be easily learned again in the future to create new music scores with the same structures.
+System for Notation and Writing Music Scores:
+1. Data Structure:
+
+The system relies on two main classes:
+
+    MusicBlock:
+        type: Specifies the type of musical element. It can be either "note" for a single note or "chord" for a chord.
+        value: Represents the name of the note or chord. For example, a note might be "C4", "D#5", etc., and a chord is a string of notes separated by vertical bars like "C5|E5|G5".
+        duration: Defines the duration of the note or chord. The duration is expressed in text (e.g., "whole", "half", "quarter", "eighth", etc.).
+
+    Partition:
+        Contains a list of MusicBlock. Each MusicBlock in this list represents a musical element in the score (note or chord).
+
+2. Notation of Notes and Chords:
+
+    Notes: A note is identified by a combination of the letter corresponding to the musical note (e.g., "C", "D#", "A", etc.) and a number for the octave (e.g., "C4" for middle C).
+    Chords: A chord is a combination of several notes separated by vertical bars (|), e.g., "C5|E5|G5" for a C major chord.
+
+3. Durations of Notes:
+
+The durations of notes and chords are expressed as text and converted into seconds using the GetDurationInSeconds function, which takes the tempo into account. Here are the possible durations:
+
+    "whole": 4 beats
+    "half": 2 beats
+    "quarter": 1 beat
+    "eighth": 1/2 beat
+    "sixteenth": 1/4 beat
+    "thirty-second": 1/8 beat
+    "sixty-fourth": 1/16 beat
+
+The duration is calculated using the following formula:
+
+duration_in_seconds = (duration_beats) * (60 / tempo)
+
+For example, if the tempo is 120 BPM (beats per minute), each quarter note lasts 0.5 seconds.
+4. Handling Chords:
+
+    Chords are specified as a string of notes separated by |. For example, "C5|E5|G5" defines a C major chord.
+    Each note in the chord is played simultaneously using a loop to play each note within the chord.
+
+5. Executing the Score:
+
+    The script reads the partition from a JSON format, and for each MusicBlock:
+        If it’s a note, it is played for the specified duration.
+        If it’s a chord, each note in the chord is played simultaneously for the specified duration.
+    The PlayNote function is used to play each individual note or each note of a chord. Each note is associated with an AudioSource for playback.
+
+Example of Notation in JSON Format:
+
+Here’s an example of notation for a small score using this system:
+
+{
+    "blocks": [
+        {"type": "note", "value": "C4", "duration": "quarter"},
+        {"type": "note", "value": "D4", "duration": "quarter"},
+        {"type": "chord", "value": "E4|G4|C5", "duration": "half"},
+        {"type": "note", "value": "F4", "duration": "quarter"},
+        {"type": "note", "value": "G4", "duration": "quarter"},
+        {"type": "chord", "value": "A4|C5|E5", "duration": "eighth"}
+    ]
+}
+
+Summary of the System:
+
+    MusicBlock represents a musical unit (note or chord), with its type (note or chord), its value (note or chord name), and its duration (descriptive text).
+    Partition is a collection of MusicBlock, forming a complete music score.
+    Durations are specified as text and converted into seconds based on the tempo.
+    The system allows for the playing of notes and chords at precise durations, with each note being played using the PlayNote function.
+
+This system lets you write music scores in JSON format using a simple and structured system. If you want to reintroduce it in the future, this explanation can be used as a reference to quickly learn how to create new scores.

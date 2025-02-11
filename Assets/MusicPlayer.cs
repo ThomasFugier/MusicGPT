@@ -1,14 +1,15 @@
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-using System.IO;
 
 [System.Serializable]
 public class MusicBlock
 {
     public string type; // "note" ou "chord"
     public string value; // Nom de la note ou de l'accord
-    public float duration; // Durée de la note ou de l'accord
+    public string duration; // Durée de la note ou de l'accord sous forme de texte (ex : "croche", "blanche")
 }
 
 [System.Serializable]
@@ -17,12 +18,19 @@ public class Partition
     public List<MusicBlock> blocks;
 }
 
+public enum PlayMode
+{
+    Partition,   // Mode de lecture de la partition
+    RandomPlaying // Mode de lecture aléatoire
+}
+
 public class MusicPlayer : MonoBehaviour
 {
     [TextArea(20, 50)]
     public string jsonPartition;
     public AudioClip[] notes; // Contient les 12 notes de base (une octave)
     public float tempo = 120f;
+    public PlayMode playMode = PlayMode.Partition; // Mode de lecture
     private Dictionary<string, int> noteMap;
 
     void Start()
@@ -33,23 +41,55 @@ public class MusicPlayer : MonoBehaviour
             {"F#", 6}, {"G", 7}, {"G#", 8}, {"A", 9}, {"A#", 10}, {"B", 11}
         };
 
-        Partition partition = JsonUtility.FromJson<Partition>(jsonPartition);
-        StartCoroutine(PlayPartition(partition));
+        if (playMode == PlayMode.Partition)
+        {
+            Partition partition = JsonUtility.FromJson<Partition>(jsonPartition);
+            StartCoroutine(PlayPartition(partition));
+        }
+        else if (playMode == PlayMode.RandomPlaying)
+        {
+            StartCoroutine(PlayRandomNotes());
+        }
+    }
+
+    private float GetDurationInSeconds(string duration)
+    {
+        switch (duration.ToLower())
+        {
+            case "ronde":
+                return 4f * 60f / tempo;
+            case "blanche":
+                return 2f * 60f / tempo;
+            case "noire":
+                return 1f * 60f / tempo;
+            case "croche":
+                return 0.5f * 60f / tempo;
+            case "doublecroche":
+                return 0.25f * 60f / tempo;
+            case "triplecroche":
+                return 0.125f * 60f / tempo;
+            case "quadruplecroche":
+                return 0.0625f * 60f / tempo;
+            default:
+                Debug.LogError("Durée non reconnue : " + duration);
+                return 1f; // Valeur par défaut
+        }
     }
 
     private IEnumerator PlayPartition(Partition partition)
     {
         foreach (var block in partition.blocks)
         {
+            float durationInSeconds = GetDurationInSeconds(block.duration); // Convertir la durée en secondes
             if (block.type == "chord")
             {
                 PlayChord(block.value);
             }
             else if (block.type == "note")
             {
-                StartCoroutine(PlayNoteRoutine(block.value, block.duration));
+                StartCoroutine(PlayNoteRoutine(block.value, durationInSeconds));
             }
-            yield return new WaitForSeconds(block.duration);
+            yield return new WaitForSeconds(durationInSeconds);
         }
     }
 
@@ -135,5 +175,67 @@ public class MusicPlayer : MonoBehaviour
         int prevIndex = (index - 1 + notes.Length) % notes.Length;
         int nextIndex = (index + 1) % notes.Length;
         return notes[prevIndex] != null ? notes[prevIndex] : notes[nextIndex];
+    }
+
+    // Coroutine pour jouer des notes ou accords aléatoires
+    private IEnumerator PlayRandomNotes()
+    {
+        while (true)
+        {
+            if (Random.Range(0, 2) == 0) // 50% de chance de jouer une note ou un accord
+            {
+                string randomNote = GetRandomNote();
+                float randomDuration = Random.Range(0.2f, 1.0f); // Durée aléatoire entre 0.2 et 1 seconde
+                PlayNote(randomNote, randomDuration, null);
+            }
+            else
+            {
+                string randomChord = GetRandomChord(); // Générer un accord aléatoire
+                float randomDuration = Random.Range(0.5f, 1.5f); // Durée aléatoire pour les accords
+                PlayChord(randomChord);
+            }
+
+            yield return new WaitForSeconds(Random.Range(0.3f, 1.5f)); // Intervalle entre les notes ou accords
+        }
+    }
+
+    private string GetRandomNote()
+    {
+        string[] noteKeys = { "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B" };
+        return noteKeys[Random.Range(0, noteKeys.Length)] + Random.Range(3, 6); // Note aléatoire avec octave entre 3 et 6
+    }
+
+    // Générer un accord aléatoire
+    private string GetRandomChord()
+    {
+        // Sélectionner une note de base pour l'accord
+        string rootNote = GetRandomNote().Substring(0, 1); // Prendre la première lettre de la note comme racine
+        int octave = Random.Range(3, 6); // Sélectionner une octave entre 3 et 6
+
+        // Créer un accord majeur (racine, tierce majeure, quinte)
+        string chord = "|" + rootNote + octave + "|"; // Racine
+        chord += GetNoteByInterval(rootNote, 4) + octave + "|"; // Tierce majeure
+        chord += GetNoteByInterval(rootNote, 7) + octave + "|"; // Quinte
+
+        // 50% chance de créer un accord mineur à la place
+        if (Random.Range(0, 2) == 0)
+        {
+            // Créer un accord mineur (racine, tierce mineure, quinte)
+            chord = "|" + rootNote + octave + "|"; // Racine
+            chord += GetNoteByInterval(rootNote, 3) + octave + "|"; // Tierce mineure
+            chord += GetNoteByInterval(rootNote, 7) + octave + "|"; // Quinte
+        }
+
+        return chord;
+    }
+
+
+
+    // Obtenir une note par intervalle
+    private string GetNoteByInterval(string rootNote, int interval)
+    {
+        int rootIndex = noteMap[rootNote];
+        int targetIndex = (rootIndex + interval) % 12;
+        return noteMap.Keys.ToArray()[targetIndex];
     }
 }
