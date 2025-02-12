@@ -61,6 +61,7 @@ public class MusicPlayer : MonoBehaviour
 {
     [Header("Settings")]
     public float tempo = 120f;
+    public float sustain;
     public PlayMode playMode = PlayMode.Partition;
     public Mode currentMode = Mode.Ionien;
     public Tonalite currentTonalite = Tonalite.C;
@@ -152,9 +153,9 @@ public class MusicPlayer : MonoBehaviour
 
             if (block.type == "chord")
             {
-                PlayChord(block.value);
+                // On passe aussi la durée à PlayChord pour que l'accord soit joué pendant la durée spécifiée
+                StartCoroutine(PlayChordRoutine(block.value, durationInSeconds));
             }
-
             else if (block.type == "note")
             {
                 StartCoroutine(PlayNoteRoutine(block.value, durationInSeconds));
@@ -164,27 +165,52 @@ public class MusicPlayer : MonoBehaviour
         }
     }
 
-    private void PlayChord(string chord)
-    {
-        GameObject chordObject = new GameObject("Chords = " + chord);
 
+    private IEnumerator PlayChordRoutine(string chord, float duration)
+    {
+        AudioSource[] sources = PlayChord(chord, duration);
+        yield return new WaitForSeconds(duration);
+
+        // Appeler la coroutine pour muter progressivement le volume de chaque source audio d'accord
+        foreach (var source in sources)
+        {
+            StartCoroutine(FadeOutNoteVolume(source, duration * 0.2f)); // Fade out sur 20% de la durée de l'accord
+        }
+    }
+
+    private AudioSource[] PlayChord(string chord, float duration)
+    {
+        GameObject chordObject = new GameObject("Chord: " + chord);
         string[] noteArray = chord.Split(new char[] { '|' }, System.StringSplitOptions.RemoveEmptyEntries);
+
+        List<AudioSource> sources = new List<AudioSource>();
 
         foreach (string note in noteArray)
         {
-            PlayNote(note.Trim(), 60f / tempo, chordObject);
+            AudioSource source = PlaySingleNote(note.Trim(), duration, chordObject);
+            if (source != null)
+            {
+                sources.Add(source);
+            }
         }
+
+        return sources.ToArray();
     }
 
     private IEnumerator PlayNoteRoutine(string note, float duration)
     {
-        PlayNote(note, duration, null);
+        AudioSource source = PlayNote(note, duration, null);
         yield return new WaitForSeconds(duration);
+
+        // Utilisation de la variable sustain pour le fade-out
+        StartCoroutine(FadeOutNoteVolume(source, sustain));
     }
 
-    private void PlayNote(string note, float duration, GameObject parent)
+    
+
+    private AudioSource PlayNote(string note, float duration, GameObject parent)
     {
-        if (string.IsNullOrEmpty(note)) return;
+        if (string.IsNullOrEmpty(note)) return null;
 
         try
         {
@@ -198,25 +224,27 @@ public class MusicPlayer : MonoBehaviour
             }
             else
             {
-                PlaySingleNote(note, duration, parent);
+                return PlaySingleNote(note, duration, parent);
             }
         }
         catch (System.Exception e)
         {
+            Debug.LogError("Error in PlayNote: " + e.Message);
         }
+        return null;
     }
 
-    private void PlaySingleNote(string note, float duration, GameObject parent)
+    private AudioSource PlaySingleNote(string note, float duration, GameObject parent)
     {
-        if (note.Length < 2) return;
-
-        if (note.Contains("#"))
-        {
-            note = note.Replace("#", "Sharp");
-        }
+        if (string.IsNullOrEmpty(note)) return null;
 
         try
         {
+            if (note.Contains("#"))
+            {
+                note = note.Replace("#", "Sharp");
+            }
+
             string noteKey;
             int octave;
 
@@ -232,7 +260,7 @@ public class MusicPlayer : MonoBehaviour
 
             if (!noteMap.ContainsKey(noteKey))
             {
-                return;
+                return null;
             }
 
             int noteIndex = noteMap[noteKey];
@@ -240,7 +268,7 @@ public class MusicPlayer : MonoBehaviour
 
             if (adjustedIndex < 0 || adjustedIndex >= notes.Length)
             {
-                return;
+                return null;
             }
 
             float pitchFactor = Mathf.Pow(2, octave - baseOctave);
@@ -256,10 +284,31 @@ public class MusicPlayer : MonoBehaviour
             source.pitch = pitchFactor;
             source.Play();
             StartCoroutine(DestroyAfterPlaying(noteObject, source));
+
+            return source;
         }
         catch (System.Exception e)
         {
+            Debug.LogError("Error in PlayNoteSingle: " + e.Message);
         }
+        return null;
+    }
+
+
+    private IEnumerator FadeOutNoteVolume(AudioSource source, float fadeDuration)
+    {
+        if (source == null) yield break;
+
+        float startVolume = source.volume;
+        float time = 0;
+
+        while (time < fadeDuration)
+        {
+            source.volume = Mathf.Lerp(startVolume, 0, time / fadeDuration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        source.volume = 0;
     }
 
     private IEnumerator DestroyAfterPlaying(GameObject noteObject, AudioSource source)
@@ -285,7 +334,7 @@ public class MusicPlayer : MonoBehaviour
         if (trackType == "track1")
         {
             string randomChord = GetRandomChord();
-            PlayChord(randomChord);
+            StartCoroutine(PlayChordRoutine(randomChord, durationInSeconds));
         }
         else if (trackType == "track2")
         {

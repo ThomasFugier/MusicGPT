@@ -483,6 +483,10 @@ PrefabInstance:
       value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
+      propertyPath: sustain
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: playMode
       value: 0
       objectReference: {fileID: 0}
