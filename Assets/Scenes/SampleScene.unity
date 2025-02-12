@@ -507,6 +507,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
+      propertyPath: octaveShift
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: jsonPartition
       value: "{\n  \"blocks\": [\n    {\n      \"type\": \"chord\",\n      \"value\":
         \"|G4|Bb4|D5|\",\n      \"duration\": \"whole\"\n    },\n    {\n      \"type\":
@@ -548,55 +552,55 @@ PrefabInstance:
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: partitionTextAsset
       value: 
-      objectReference: {fileID: 4900000, guid: ecb8d5293f7e65a43a57fee84124dc86, type: 3}
+      objectReference: {fileID: 4900000, guid: b83da42f9707c074ba881182bd73b016, type: 3}
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: 'notes.Array.data[0]'
       value: 
-      objectReference: {fileID: 8300000, guid: 5c533ec841c15e340a0e376d1072bda7, type: 3}
+      objectReference: {fileID: 8300000, guid: cc0f8c51492ac41478ad946e806a5456, type: 3}
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: 'notes.Array.data[1]'
       value: 
-      objectReference: {fileID: 8300000, guid: d6eba36013000c0419a93bc6b72570a2, type: 3}
+      objectReference: {fileID: 8300000, guid: b953903b16d303d4e863c0c91fb0d862, type: 3}
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: 'notes.Array.data[2]'
       value: 
-      objectReference: {fileID: 8300000, guid: 08ad74c7dbc413d4f9a159b87173f6e8, type: 3}
+      objectReference: {fileID: 8300000, guid: 496fff3eb18b9ae4294504d74554f22f, type: 3}
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: 'notes.Array.data[3]'
       value: 
-      objectReference: {fileID: 8300000, guid: 59a24540010a8e24fad1a211a1fb7a18, type: 3}
+      objectReference: {fileID: 8300000, guid: b6d05504201eb2d4aa1070dcb59b5214, type: 3}
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: 'notes.Array.data[4]'
       value: 
-      objectReference: {fileID: 8300000, guid: 3195064e71de94a45857b694f836f07a, type: 3}
+      objectReference: {fileID: 8300000, guid: 3334719629e660749b9c209e7fad56e0, type: 3}
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: 'notes.Array.data[5]'
       value: 
-      objectReference: {fileID: 8300000, guid: 3cd7b2bb2ec16734985a6c7b1f16d365, type: 3}
+      objectReference: {fileID: 8300000, guid: 3a91becab6507dc4fba3036e42427e36, type: 3}
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: 'notes.Array.data[6]'
       value: 
-      objectReference: {fileID: 8300000, guid: 9b7ac438108dd854c9a53d1665396450, type: 3}
+      objectReference: {fileID: 8300000, guid: 49b84b84dcb96b845a05d87a86bb4202, type: 3}
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: 'notes.Array.data[7]'
       value: 
-      objectReference: {fileID: 8300000, guid: 548a3dba42ee457499c7f810bf18c463, type: 3}
+      objectReference: {fileID: 8300000, guid: 67f1bd48e19a38346bab8b6bd91b8f22, type: 3}
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: 'notes.Array.data[8]'
       value: 
-      objectReference: {fileID: 8300000, guid: 8a932ec9e63cb8f4395dbe5b826ebd1b, type: 3}
+      objectReference: {fileID: 8300000, guid: 1289f02cfcd4b0349a56b2f13c8e5bb7, type: 3}
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: 'notes.Array.data[9]'
       value: 
-      objectReference: {fileID: 8300000, guid: 47eebb9c0b36e1043ad92cac15245ccb, type: 3}
+      objectReference: {fileID: 8300000, guid: 4989aa604773e5840a8cfc9b533448d5, type: 3}
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: 'notes.Array.data[10]'
       value: 
-      objectReference: {fileID: 8300000, guid: c5034a9fd29006b4fb59a1451e0935eb, type: 3}
+      objectReference: {fileID: 8300000, guid: e9fa8f0aae8e05a4591999b4251cf010, type: 3}
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: 'notes.Array.data[11]'
       value: 
-      objectReference: {fileID: 8300000, guid: 383a1c7e5e20b4342bd24bfb648b8cbf, type: 3}
+      objectReference: {fileID: 8300000, guid: 5c533ec841c15e340a0e376d1072bda7, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

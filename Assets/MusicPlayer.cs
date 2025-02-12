@@ -57,6 +57,16 @@ public enum Tonalite
     B
 }
 
+// Ajout de l'énumération pour l'offset d'octave
+public enum OctaveShift
+{
+    Decrease2 = -2,
+    Decrease1 = -1,
+    None = 0,
+    Increase1 = 1,
+    Increase2 = 2
+}
+
 public class MusicPlayer : MonoBehaviour
 {
     [Header("Settings")]
@@ -69,12 +79,13 @@ public class MusicPlayer : MonoBehaviour
     public int minOctave = 3;
     public int maxOctave = 6;
     public int baseOctave = 5;
+    // Offset d'octave pour la lecture de la partition
+    public OctaveShift octaveShift = OctaveShift.None;
     private Dictionary<Mode, List<int>> modeIntervals = new Dictionary<Mode, List<int>>();
     private Dictionary<Tonalite, List<string>> tonaliteAccidentals = new Dictionary<Tonalite, List<string>>();
 
     [Header("Partition")]
     public TextAsset partitionTextAsset;
-
 
     [Header("References")]
     public AudioClip[] notes;
@@ -115,7 +126,6 @@ public class MusicPlayer : MonoBehaviour
             Partition partition = JsonUtility.FromJson<Partition>(partitionTextAsset.text);
             StartCoroutine(PlayPartition(partition));
         }
-
         else if (playMode == PlayMode.RandomPlaying)
         {
             StartCoroutine(PlayRandomNotes());
@@ -155,7 +165,6 @@ public class MusicPlayer : MonoBehaviour
 
             if (block.type == "chord")
             {
-                // On passe aussi la durée à PlayChord pour que l'accord soit joué pendant la durée spécifiée
                 StartCoroutine(PlayChordRoutine(block.value, durationInSeconds));
             }
             else if (block.type == "note")
@@ -167,13 +176,11 @@ public class MusicPlayer : MonoBehaviour
         }
     }
 
-
     private IEnumerator PlayChordRoutine(string chord, float duration)
     {
         AudioSource[] sources = PlayChord(chord, duration);
-        yield return new WaitForSeconds(duration); // Attente de la durée complète de l'accord
+        yield return new WaitForSeconds(duration);
 
-        // Début du fade-out pour chaque note de l'accord
         foreach (var source in sources)
         {
             StartCoroutine(FadeOutNoteVolume(source, sustain));
@@ -181,10 +188,9 @@ public class MusicPlayer : MonoBehaviour
     }
 
     private AudioSource[] PlayChord(string chord, float duration)
-    { 
+    {
         GameObject chordObject = new GameObject("Chord: " + chord + " | " + duration);
         string[] noteArray = chord.Split(new char[] { '|' }, System.StringSplitOptions.RemoveEmptyEntries);
-
         List<AudioSource> sources = new List<AudioSource>();
 
         foreach (string note in noteArray)
@@ -202,14 +208,9 @@ public class MusicPlayer : MonoBehaviour
     private IEnumerator PlayNoteRoutine(string note, float duration)
     {
         AudioSource source = PlayNote(note, duration, null);
-        yield return new WaitForSeconds(duration); // Attente de la durée complète de la note
-
-        // Début du fade-out basé sur sustain
+        yield return new WaitForSeconds(duration);
         StartCoroutine(FadeOutNoteVolume(source, sustain));
     }
-
-
-
 
     private AudioSource PlayNote(string note, float duration, GameObject parent)
     {
@@ -261,6 +262,12 @@ public class MusicPlayer : MonoBehaviour
                 octave = baseOctave;
             }
 
+            // Appliquer l'offset d'octave pour la lecture de la partition
+            if (playMode == PlayMode.Partition)
+            {
+                octave += (int)octaveShift;
+            }
+
             if (!noteMap.ContainsKey(noteKey))
             {
                 return null;
@@ -292,11 +299,10 @@ public class MusicPlayer : MonoBehaviour
         }
         catch (System.Exception e)
         {
-            Debug.LogError("Error in PlayNoteSingle: " + e.Message);
+            Debug.LogError("Error in PlaySingleNote: " + e.Message);
         }
         return null;
     }
-
 
     private IEnumerator FadeOutNoteVolume(AudioSource source, float fadeDuration)
     {
@@ -331,7 +337,6 @@ public class MusicPlayer : MonoBehaviour
     {
         string[] possibleDurations = new string[] { "whole", "half", "quarter", "eighth", "sixteenth", "thirtysecond", "sixtyfourth" };
         string randomDuration = possibleDurations[Random.Range(0, possibleDurations.Length)];
-
         float durationInSeconds = GetDurationInSeconds(randomDuration);
 
         if (trackType == "track1")
@@ -380,16 +385,12 @@ public class MusicPlayer : MonoBehaviour
         int octave = Random.Range(minOctave, maxOctave + 1);
 
         List<string> chordNotes = new List<string> { rootNote + octave };
+        chordNotes.Add(modeNotes[(degree + 2) % modeNotes.Count] + octave);
+        chordNotes.Add(modeNotes[(degree + 4) % modeNotes.Count] + octave);
 
-        // Ajout d'autres notes à l'accord (ex: 3e et 5e degrés)
-        chordNotes.Add(modeNotes[(degree + 2) % modeNotes.Count] + octave);  // 3e degré
-        chordNotes.Add(modeNotes[(degree + 4) % modeNotes.Count] + octave);  // 5e degré
-
-        // Forme l'accord avec plusieurs notes
         string chord = "|" + string.Join("|", chordNotes) + "|";
         return chord;
     }
-
 
     private List<string> GetModeNotes(Tonalite tonalite, Mode mode)
     {

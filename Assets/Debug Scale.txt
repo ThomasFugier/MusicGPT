@@ -1,0 +1,30 @@
+{
+  "blocks": [
+    { "type": "note", "value": "C3", "duration": "quarter" },
+    { "type": "note", "value": "D3", "duration": "quarter" },
+    { "type": "note", "value": "E3", "duration": "quarter" },
+    { "type": "note", "value": "F3", "duration": "quarter" },
+    { "type": "note", "value": "G3", "duration": "quarter" },
+    { "type": "note", "value": "A3", "duration": "quarter" },
+    { "type": "note", "value": "B3", "duration": "quarter" },
+    { "type": "chord", "value": "|C3|E3|G3|", "duration": "half" },
+
+    { "type": "note", "value": "C4", "duration": "quarter" },
+    { "type": "note", "value": "D4", "duration": "quarter" },
+    { "type": "note", "value": "E4", "duration": "quarter" },
+    { "type": "note", "value": "F4", "duration": "quarter" },
+    { "type": "note", "value": "G4", "duration": "quarter" },
+    { "type": "note", "value": "A4", "duration": "quarter" },
+    { "type": "note", "value": "B4", "duration": "quarter" },
+    { "type": "chord", "value": "|C4|E4|G4|", "duration": "half" },
+
+    { "type": "note", "value": "C5", "duration": "quarter" },
+    { "type": "note", "value": "D5", "duration": "quarter" },
+    { "type": "note", "value": "E5", "duration": "quarter" },
+    { "type": "note", "value": "F5", "duration": "quarter" },
+    { "type": "note", "value": "G5", "duration": "quarter" },
+    { "type": "note", "value": "A5", "duration": "quarter" }, 
+    { "type": "note", "value": "B5", "duration": "quarter" },
+    { "type": "chord", "value": "|C5|E5|G5|", "duration": "half" }
+  ]
+}

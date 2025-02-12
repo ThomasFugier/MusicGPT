@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d6eba36013000c0419a93bc6b72570a2
+guid: 3a91becab6507dc4fba3036e42427e36
 AudioImporter:
   externalObjects: {}
   serializedVersion: 6
@@ -25,5 +25,5 @@ AssetOrigin:
   productId: 196062
   packageName: Sound Of PianoKeys
   packageVersion: 1.0
-  assetPath: Assets/Notes/GrandPiano_26.WAV
+  assetPath: Assets/Pack/Game/Sound_Of_PianoKeys/SOPK_GrandPiano/AudioWave/GrandPiano_18.WAV
   uploadId: 445230
