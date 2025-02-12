@@ -1,0 +1,214 @@
+{
+  "blocks": [
+    {
+      "type": "chord",
+      "value": "|B3|D4|F4|",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "E4",
+      "duration": "eighth"
+    },
+    {
+      "type": "note",
+      "value": "D4",
+      "duration": "eighth"
+    },
+    {
+      "type": "note",
+      "value": "C4",
+      "duration": "eighth"
+    },
+    {
+      "type": "note",
+      "value": "B3",
+      "duration": "quarter"
+    },
+    {
+      "type": "chord",
+      "value": "|E4|G4|B4|",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "E4",
+      "duration": "eighth"
+    },
+    {
+      "type": "note",
+      "value": "F4",
+      "duration": "eighth"
+    },
+    {
+      "type": "note",
+      "value": "E4",
+      "duration": "eighth"
+    },
+    {
+      "type": "note",
+      "value": "D4",
+      "duration": "quarter"
+    },
+    {
+      "type": "chord",
+      "value": "|A3|C4|E4|",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "A4",
+      "duration": "eighth"
+    },
+    {
+      "type": "note",
+      "value": "C4",
+      "duration": "eighth"
+    },
+    {
+      "type": "note",
+      "value": "E4",
+      "duration": "eighth"
+    },
+    {
+      "type": "note",
+      "value": "F4",
+      "duration": "quarter"
+    },
+    {
+      "type": "chord",
+      "value": "|A3|C4|E4|",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "E4",
+      "duration": "eighth"
+    },
+    {
+      "type": "note",
+      "value": "D4",
+      "duration": "eighth"
+    },
+    {
+      "type": "note",
+      "value": "C4",
+      "duration": "eighth"
+    },
+    {
+      "type": "note",
+      "value": "B3",
+      "duration": "quarter"
+    },
+    {
+      "type": "chord",
+      "value": "|A3|C4|E4|",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "E4",
+      "duration": "eighth"
+    },
+    {
+      "type": "note",
+      "value": "D4",
+      "duration": "eighth"
+    },
+    {
+      "type": "note",
+      "value": "C4",
+      "duration": "eighth"
+    },
+    {
+      "type": "note",
+      "value": "B3",
+      "duration": "quarter"
+    },
+    {
+      "type": "chord",
+      "value": "|F4|A4|C5|",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "G4",
+      "duration": "eighth"
+    },
+    {
+      "type": "note",
+      "value": "F4",
+      "duration": "eighth"
+    },
+    {
+      "type": "note",
+      "value": "E4",
+      "duration": "eighth"
+    },
+    {
+      "type": "note",
+      "value": "D4",
+      "duration": "quarter"
+    },
+    {
+      "type": "chord",
+      "value": "|A3|C4|E4|",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "B3",
+      "duration": "eighth"
+    },
+    {
+      "type": "note",
+      "value": "C4",
+      "duration": "eighth"
+    },
+    {
+      "type": "note",
+      "value": "D4",
+      "duration": "quarter"
+    },
+    {
+      "type": "chord",
+      "value": "|G3|B3|D4|",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "E4",
+      "duration": "eighth"
+    },
+    {
+      "type": "note",
+      "value": "F4",
+      "duration": "eighth"
+    },
+    {
+      "type": "note",
+      "value": "G4",
+      "duration": "quarter"
+    },
+    {
+      "type": "chord",
+      "value": "|C4|E4|G4|",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "E4",
+      "duration": "eighth"
+    },
+    {
+      "type": "note",
+      "value": "F4",
+      "duration": "eighth"
+    },
+    {
+      "type": "note",
+      "value": "G4",
+      "duration": "quarter"
+    }
+  ]
+}
