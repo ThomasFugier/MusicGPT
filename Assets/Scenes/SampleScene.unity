@@ -480,7 +480,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: tempo
-      value: 500
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: sustain
@@ -508,7 +508,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: octaveShift
-      value: -1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: jsonPartition
@@ -552,7 +552,7 @@ PrefabInstance:
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: partitionTextAsset
       value: 
-      objectReference: {fileID: 4900000, guid: b83da42f9707c074ba881182bd73b016, type: 3}
+      objectReference: {fileID: 4900000, guid: 2800546b044a3d94a8da3e90b7aa0e27, type: 3}
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: 'notes.Array.data[0]'
       value: 
