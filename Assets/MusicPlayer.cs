@@ -6,9 +6,9 @@ using UnityEngine;
 [System.Serializable]
 public class MusicBlock
 {
-    public string type; // "note" ou "chord"
-    public string value; // Nom de la note ou de l'accord
-    public string duration; // Durée de la note ou de l'accord sous forme de texte (ex : "croche", "blanche")
+    public string type;
+    public string value;
+    public string duration;
 }
 
 [System.Serializable]
@@ -19,25 +19,25 @@ public class Partition
 
 public enum TrackMode
 {
-    SingleTrack,   // Mode où seule une piste est jouée (accords)
-    DoubleTrack    // Mode où deux pistes sont jouées (accords sur la première, notes sur la deuxième)
+    SingleTrack,
+    DoubleTrack
 }
 
 
 public enum PlayMode
 {
-    Partition,   // Mode de lecture de la partition
-    RandomPlaying // Mode de lecture aléatoire
+    Partition,
+    RandomPlaying
 }
 
 public enum Mode
 {
-    Ionien,  // Majeur
+    Ionien,
     Dorien,
     Phrygien,
     Lydien,
     Mixolydien,
-    Aeolien,  // Mineur naturel
+    Aeolien,
     Locrien
 }
 

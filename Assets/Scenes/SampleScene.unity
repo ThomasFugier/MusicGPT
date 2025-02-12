@@ -496,52 +496,58 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: jsonPartition
-      value: "{\n  \"blocks\": [\n    {\n      \"type\": \"chord\",\n      \"value\":
-        \"|CSharp4|E4|GSharp4|\",\n      \"duration\": \"blanche\"\n    },\n    {\n     
-        \"type\": \"note\",\n      \"value\": \"GSharp4\",\n      \"duration\": \"noire\"\n   
-        },\n    {\n      \"type\": \"note\",\n      \"value\": \"FSharp4\",\n     
-        \"duration\": \"croche\"\n    },\n    {\n      \"type\": \"note\",\n     
-        \"value\": \"E4\",\n      \"duration\": \"croche\"\n    },\n    \n    {\n     
-        \"type\": \"chord\",\n      \"value\": \"|CSharp4|E4|GSharp4|\",\n      \"duration\":
-        \"blanche\"\n    },\n    {\n      \"type\": \"note\",\n      \"value\": \"E4\",\n     
-        \"duration\": \"noire\"\n    },\n    {\n      \"type\": \"note\",\n     
-        \"value\": \"DSharp4\",\n      \"duration\": \"croche\"\n    },\n    {\n     
-        \"type\": \"note\",\n      \"value\": \"CSharp4\",\n      \"duration\": \"croche\"\n   
-        },\n    \n    {\n      \"type\": \"chord\",\n      \"value\": \"|GSharp3|CSharp4|E4|\",\n     
-        \"duration\": \"blanche\"\n    },\n    {\n      \"type\": \"note\",\n     
-        \"value\": \"CSharp4\",\n      \"duration\": \"noire\"\n    },\n    {\n     
-        \"type\": \"note\",\n      \"value\": \"DSharp4\",\n      \"duration\": \"croche\"\n   
-        },\n    {\n      \"type\": \"note\",\n      \"value\": \"E4\",\n      \"duration\":
-        \"croche\"\n    },\n    \n    {\n      \"type\": \"chord\",\n      \"value\":
-        \"|FSharp3|A3|CSharp4|\",\n      \"duration\": \"blanche\"\n    },\n    {\n     
-        \"type\": \"note\",\n      \"value\": \"A3\",\n      \"duration\": \"noire\"\n   
-        },\n    {\n      \"type\": \"note\",\n      \"value\": \"GSharp3\",\n     
-        \"duration\": \"croche\"\n    },\n    {\n      \"type\": \"note\",\n     
-        \"value\": \"FSharp3\",\n      \"duration\": \"croche\"\n    },\n    \n   
-        {\n      \"type\": \"chord\",\n      \"value\": \"|CSharp4|E4|GSharp4|\",\n     
-        \"duration\": \"blanche\"\n    },\n    {\n      \"type\": \"note\",\n     
-        \"value\": \"GSharp4\",\n      \"duration\": \"noire\"\n    },\n    {\n     
-        \"type\": \"note\",\n      \"value\": \"A4\",\n      \"duration\": \"croche\"\n   
-        },\n    {\n      \"type\": \"note\",\n      \"value\": \"B4\",\n      \"duration\":
-        \"croche\"\n    },\n    \n    {\n      \"type\": \"chord\",\n      \"value\":
-        \"|CSharp4|E4|GSharp4|\",\n      \"duration\": \"blanche\"\n    },\n    {\n     
-        \"type\": \"note\",\n      \"value\": \"B4\",\n      \"duration\": \"noire\"\n   
-        },\n    {\n      \"type\": \"note\",\n      \"value\": \"A4\",\n      \"duration\":
-        \"croche\"\n    },\n    {\n      \"type\": \"note\",\n      \"value\": \"GSharp4\",\n     
-        \"duration\": \"croche\"\n    },\n    \n    {\n      \"type\": \"chord\",\n     
-        \"value\": \"|GSharp3|CSharp4|E4|\",\n      \"duration\": \"blanche\"\n   
-        },\n    {\n      \"type\": \"note\",\n      \"value\": \"CSharp4\",\n     
-        \"duration\": \"noire\"\n    },\n    {\n      \"type\": \"note\",\n     
-        \"value\": \"DSharp4\",\n      \"duration\": \"croche\"\n    },\n    {\n     
-        \"type\": \"note\",\n      \"value\": \"E4\",\n      \"duration\": \"croche\"\n   
-        },\n    \n    {\n      \"type\": \"chord\",\n      \"value\": \"|FSharp3|A3|CSharp4|\",\n     
-        \"duration\": \"blanche\"\n    },\n    {\n      \"type\": \"note\",\n     
-        \"value\": \"A3\",\n      \"duration\": \"noire\"\n    },\n    {\n      \"type\":
-        \"note\",\n      \"value\": \"GSharp3\",\n      \"duration\": \"croche\"\n   
-        },\n    {\n      \"type\": \"note\",\n      \"value\": \"FSharp3\",\n     
-        \"duration\": \"croche\"\n    },\n    \n    {\n      \"type\": \"chord\",\n     
-        \"value\": \"|CSharp4|E4|GSharp4|\",\n      \"duration\": \"ronde\"\n   
-        }\n  ]\n}\n"
+      value: "{\n  \"blocks\": [\n    { \"type\": \"chord\", \"value\": \"|A2|E3|G3|C4|E4|\",
+        \"duration\": \"blanche\" },\n    { \"type\": \"note\", \"value\": \"A4\",
+        \"duration\": \"croche\" },\n    { \"type\": \"note\", \"value\": \"G4\",
+        \"duration\": \"croche\" },\n    { \"type\": \"note\", \"value\": \"F4\",
+        \"duration\": \"noire\" },\n    { \"type\": \"note\", \"value\": \"C5\",
+        \"duration\": \"croche\" },\n    { \"type\": \"note\", \"value\": \"A4\",
+        \"duration\": \"doublecroche\" },\n    { \"type\": \"note\", \"value\": \"G4\",
+        \"duration\": \"doublecroche\" },\n\n    { \"type\": \"chord\", \"value\":
+        \"|D2|A2|D3|F4|A4|\", \"duration\": \"blanche\" },\n    { \"type\": \"note\",
+        \"value\": \"F4\", \"duration\": \"croche\" },\n    { \"type\": \"note\",
+        \"value\": \"E4\", \"duration\": \"croche\" },\n    { \"type\": \"note\",
+        \"value\": \"D4\", \"duration\": \"noire\" },\n\n    { \"type\": \"chord\",
+        \"value\": \"|E2|B2|E3|G#3|D4|\", \"duration\": \"blanche\" },\n    { \"type\":
+        \"note\", \"value\": \"C#4\", \"duration\": \"croche\" },\n    { \"type\":
+        \"note\", \"value\": \"B3\", \"duration\": \"croche\" },\n    { \"type\":
+        \"note\", \"value\": \"A4\", \"duration\": \"noire\" },\n    { \"type\":
+        \"note\", \"value\": \"G4\", \"duration\": \"croche\" },\n\n    { \"type\":
+        \"chord\", \"value\": \"|F2|C3|E3|A3|C4|\", \"duration\": \"blanche\" },\n   
+        { \"type\": \"note\", \"value\": \"C5\", \"duration\": \"croche\" },\n   
+        { \"type\": \"note\", \"value\": \"B4\", \"duration\": \"croche\" },\n   
+        { \"type\": \"note\", \"value\": \"G4\", \"duration\": \"noire\" },\n\n   
+        { \"type\": \"chord\", \"value\": \"|G#2|C3|E3|A3|D4|\", \"duration\": \"blanche\"
+        },\n    { \"type\": \"note\", \"value\": \"A4\", \"duration\": \"croche\"
+        },\n    { \"type\": \"note\", \"value\": \"F#4\", \"duration\": \"croche\"
+        },\n    { \"type\": \"note\", \"value\": \"G4\", \"duration\": \"doublecroche\"
+        },\n    { \"type\": \"note\", \"value\": \"A4\", \"duration\": \"doublecroche\"
+        },\n\n    { \"type\": \"chord\", \"value\": \"|D2|A2|C3|F#3|B3|\", \"duration\":
+        \"blanche\" },\n    { \"type\": \"note\", \"value\": \"D5\", \"duration\":
+        \"croche\" },\n    { \"type\": \"note\", \"value\": \"A4\", \"duration\":
+        \"croche\" },\n    { \"type\": \"note\", \"value\": \"C5\", \"duration\":
+        \"noire\" },\n\n    { \"type\": \"chord\", \"value\": \"|F2|A2|D3|G3|C4|\",
+        \"duration\": \"blanche\" },\n    { \"type\": \"note\", \"value\": \"E4\",
+        \"duration\": \"croche\" },\n    { \"type\": \"note\", \"value\": \"F4\",
+        \"duration\": \"croche\" },\n    { \"type\": \"note\", \"value\": \"E4\",
+        \"duration\": \"doublecroche\" },\n    { \"type\": \"note\", \"value\": \"D4\",
+        \"duration\": \"doublecroche\" },\n\n    { \"type\": \"chord\", \"value\":
+        \"|A#2|D3|F3|G#3|C4|\", \"duration\": \"blanche\" },\n    { \"type\": \"note\",
+        \"value\": \"C5\", \"duration\": \"croche\" },\n    { \"type\": \"note\",
+        \"value\": \"B4\", \"duration\": \"croche\" },\n    { \"type\": \"note\",
+        \"value\": \"C#5\", \"duration\": \"triplecroche\" },\n    { \"type\": \"note\",
+        \"value\": \"D5\", \"duration\": \"triplecroche\" },\n\n    { \"type\": \"chord\",
+        \"value\": \"|E2|B2|E3|G3|C4|\", \"duration\": \"blanche\" },\n    { \"type\":
+        \"note\", \"value\": \"C#5\", \"duration\": \"croche\" },\n    { \"type\":
+        \"note\", \"value\": \"D4\", \"duration\": \"croche\" },\n    { \"type\":
+        \"note\", \"value\": \"C4\", \"duration\": \"doublecroche\" },\n\n    { \"type\":
+        \"chord\", \"value\": \"|A2|C3|E3|G#3|B3|\", \"duration\": \"blanche\" },\n   
+        { \"type\": \"note\", \"value\": \"F4\", \"duration\": \"croche\" },\n   
+        { \"type\": \"note\", \"value\": \"A4\", \"duration\": \"croche\" },\n   
+        { \"type\": \"note\", \"value\": \"G4\", \"duration\": \"noire\" },\n   
+        { \"type\": \"note\", \"value\": \"A4\", \"duration\": \"quadruplecroche\"
+        },\n\n    { \"type\": \"chord\", \"value\": \"|F2|A2|C3|E3|G4|\", \"duration\":
+        \"ronde\" }\n  ]\n}\n"
       objectReference: {fileID: 0}
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: currentTonalite
