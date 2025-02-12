@@ -480,11 +480,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: tempo
-      value: 200
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: sustain
-      value: 0.5
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: playMode
@@ -492,7 +492,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: maxOctave
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: minOctave
@@ -548,7 +548,7 @@ PrefabInstance:
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: partitionTextAsset
       value: 
-      objectReference: {fileID: 4900000, guid: 2800546b044a3d94a8da3e90b7aa0e27, type: 3}
+      objectReference: {fileID: 4900000, guid: ecb8d5293f7e65a43a57fee84124dc86, type: 3}
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: 'notes.Array.data[0]'
       value: 

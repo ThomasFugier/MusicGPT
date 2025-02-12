@@ -147,6 +147,8 @@ public class MusicPlayer : MonoBehaviour
 
     private IEnumerator PlayPartition(Partition partition)
     {
+        yield return new WaitForSeconds(1f);
+
         foreach (var block in partition.blocks)
         {
             float durationInSeconds = GetDurationInSeconds(block.duration);
@@ -169,18 +171,18 @@ public class MusicPlayer : MonoBehaviour
     private IEnumerator PlayChordRoutine(string chord, float duration)
     {
         AudioSource[] sources = PlayChord(chord, duration);
-        yield return new WaitForSeconds(duration);
+        yield return new WaitForSeconds(duration); // Attente de la durée complète de l'accord
 
-        // Appeler la coroutine pour muter progressivement le volume de chaque source audio d'accord
+        // Début du fade-out pour chaque note de l'accord
         foreach (var source in sources)
         {
-            StartCoroutine(FadeOutNoteVolume(source, duration * 0.2f)); // Fade out sur 20% de la durée de l'accord
+            StartCoroutine(FadeOutNoteVolume(source, sustain));
         }
     }
 
     private AudioSource[] PlayChord(string chord, float duration)
-    {
-        GameObject chordObject = new GameObject("Chord: " + chord);
+    { 
+        GameObject chordObject = new GameObject("Chord: " + chord + " | " + duration);
         string[] noteArray = chord.Split(new char[] { '|' }, System.StringSplitOptions.RemoveEmptyEntries);
 
         List<AudioSource> sources = new List<AudioSource>();
@@ -200,13 +202,14 @@ public class MusicPlayer : MonoBehaviour
     private IEnumerator PlayNoteRoutine(string note, float duration)
     {
         AudioSource source = PlayNote(note, duration, null);
-        yield return new WaitForSeconds(duration);
+        yield return new WaitForSeconds(duration); // Attente de la durée complète de la note
 
-        // Utilisation de la variable sustain pour le fade-out
+        // Début du fade-out basé sur sustain
         StartCoroutine(FadeOutNoteVolume(source, sustain));
     }
 
-    
+
+
 
     private AudioSource PlayNote(string note, float duration, GameObject parent)
     {
@@ -273,7 +276,7 @@ public class MusicPlayer : MonoBehaviour
 
             float pitchFactor = Mathf.Pow(2, octave - baseOctave);
 
-            GameObject noteObject = new GameObject(note);
+            GameObject noteObject = new GameObject(note + " | " + duration);
             if (parent != null)
             {
                 noteObject.transform.parent = parent.transform;
