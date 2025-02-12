@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -214,6 +215,7 @@ public class MusicPlayer : MonoBehaviour
 
     private AudioSource PlayNote(string note, float duration, GameObject parent)
     {
+
         if (string.IsNullOrEmpty(note)) return null;
 
         try
@@ -240,6 +242,8 @@ public class MusicPlayer : MonoBehaviour
 
     private AudioSource PlaySingleNote(string note, float duration, GameObject parent)
     {
+        string noteIndexDebug = "";
+
         if (string.IsNullOrEmpty(note)) return null;
 
         try
@@ -252,6 +256,7 @@ public class MusicPlayer : MonoBehaviour
             string noteKey;
             int octave;
 
+            // Extraire la note et l'octave
             if (note.Length > 1 && int.TryParse(note[note.Length - 1].ToString(), out octave))
             {
                 noteKey = note.Substring(0, note.Length - 1);
@@ -262,45 +267,48 @@ public class MusicPlayer : MonoBehaviour
                 octave = baseOctave;
             }
 
-            // Appliquer l'offset d'octave pour la lecture de la partition
+            // Appliquer l'offset d'octave si nécessaire
             if (playMode == PlayMode.Partition)
             {
                 octave += (int)octaveShift;
             }
 
+            // Vérifier si la note existe dans le dictionnaire
             if (!noteMap.ContainsKey(noteKey))
             {
                 return null;
             }
 
+            // Obtenir l'index de la note (la même note peut se trouver à plusieurs octaves)
             int noteIndex = noteMap[noteKey];
-            int adjustedIndex = noteIndex + (octave - 4);
 
-            if (adjustedIndex < 0 || adjustedIndex >= notes.Length)
-            {
-                return null;
-            }
-
+            // Calculer le facteur de pitch en fonction de l'octave
             float pitchFactor = Mathf.Pow(2, octave - baseOctave);
 
+            // Créer l'objet pour jouer la note
             GameObject noteObject = new GameObject(note + " | " + duration);
+
             if (parent != null)
             {
                 noteObject.transform.parent = parent.transform;
             }
 
+            // Créer le composant AudioSource et jouer la note
             AudioSource source = noteObject.AddComponent<AudioSource>();
-            source.clip = notes[adjustedIndex];
-            source.pitch = pitchFactor;
+            source.clip = notes[noteIndex];  // Utiliser le même fichier audio
+            source.pitch = pitchFactor;     // Appliquer le pitch
             source.Play();
+
+            // Détruire l'objet après avoir joué la note
             StartCoroutine(DestroyAfterPlaying(noteObject, source));
 
             return source;
         }
         catch (System.Exception e)
         {
-            Debug.LogError("Error in PlaySingleNote: " + e.Message);
+            Debug.LogError("Error in PlaySingleNote: " + noteIndexDebug);
         }
+
         return null;
     }
 

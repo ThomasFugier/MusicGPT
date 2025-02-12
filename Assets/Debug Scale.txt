@@ -1,30 +1,299 @@
 {
   "blocks": [
-    { "type": "note", "value": "C3", "duration": "quarter" },
-    { "type": "note", "value": "D3", "duration": "quarter" },
-    { "type": "note", "value": "E3", "duration": "quarter" },
-    { "type": "note", "value": "F3", "duration": "quarter" },
-    { "type": "note", "value": "G3", "duration": "quarter" },
-    { "type": "note", "value": "A3", "duration": "quarter" },
-    { "type": "note", "value": "B3", "duration": "quarter" },
-    { "type": "chord", "value": "|C3|E3|G3|", "duration": "half" },
-
-    { "type": "note", "value": "C4", "duration": "quarter" },
-    { "type": "note", "value": "D4", "duration": "quarter" },
-    { "type": "note", "value": "E4", "duration": "quarter" },
-    { "type": "note", "value": "F4", "duration": "quarter" },
-    { "type": "note", "value": "G4", "duration": "quarter" },
-    { "type": "note", "value": "A4", "duration": "quarter" },
-    { "type": "note", "value": "B4", "duration": "quarter" },
-    { "type": "chord", "value": "|C4|E4|G4|", "duration": "half" },
-
-    { "type": "note", "value": "C5", "duration": "quarter" },
-    { "type": "note", "value": "D5", "duration": "quarter" },
-    { "type": "note", "value": "E5", "duration": "quarter" },
-    { "type": "note", "value": "F5", "duration": "quarter" },
-    { "type": "note", "value": "G5", "duration": "quarter" },
-    { "type": "note", "value": "A5", "duration": "quarter" }, 
-    { "type": "note", "value": "B5", "duration": "quarter" },
-    { "type": "chord", "value": "|C5|E5|G5|", "duration": "half" }
+    {
+      "type": "note",
+      "value": "C4",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "C#4",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "D4",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "D#4",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "E4",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "F4",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "F#4",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "G4",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "G#4",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "A4",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "A#4",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "B4",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "C5",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "C#5",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "D5",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "D#5",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "E5",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "F5",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "F#5",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "G5",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "G#5",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "A5",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "A#5",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "B5",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "C6",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "C#6",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "D6",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "D#6",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "E6",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "F6",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "F#6",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "G6",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "G#6",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "A6",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "A#6",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "B6",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "C7",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "C#7",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "D7",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "D#7",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "E7",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "F7",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "F#7",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "G7",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "G#7",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "A7",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "A#7",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "B7",
+      "duration": "whole"
+    },
+    {
+      "type": "note",
+      "value": "C8",
+      "duration": "whole"
+    },
+    {
+      "type": "chord",
+      "value": "|C4|E4|G4|",
+      "duration": "whole"
+    },
+    {
+      "type": "chord",
+      "value": "|D4|F4|A4|",
+      "duration": "whole"
+    },
+    {
+      "type": "chord",
+      "value": "|E4|G4|B4|",
+      "duration": "whole"
+    },
+    {
+      "type": "chord",
+      "value": "|F4|A4|C5|",
+      "duration": "whole"
+    },
+    {
+      "type": "chord",
+      "value": "|G4|B4|D5|",
+      "duration": "whole"
+    },
+    {
+      "type": "chord",
+      "value": "|A4|C#5|E5|",
+      "duration": "whole"
+    },
+    {
+      "type": "chord",
+      "value": "|B4|D5|F#5|",
+      "duration": "whole"
+    },
+    {
+      "type": "chord",
+      "value": "|C5|E5|G5|",
+      "duration": "whole"
+    },
+    {
+      "type": "chord",
+      "value": "|D5|F5|A5|",
+      "duration": "whole"
+    },
+    {
+      "type": "chord",
+      "value": "|E5|G5|B5|",
+      "duration": "whole"
+    }
   ]
 }
