@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 [System.Serializable]
 public class MusicBlock
@@ -23,7 +24,6 @@ public enum TrackMode
     DoubleTrack
 }
 
-
 public enum PlayMode
 {
     Partition,
@@ -43,34 +43,42 @@ public enum Mode
 
 public enum Tonalite
 {
-    C,  // Do
-    CSharp,  // DoSharp
-    D,  // Ré
-    DSharp,  // RéSharp
-    E,  // Mi
-    F,  // Fa
-    FSharp,  // FaSharp
-    G,  // Sol
-    GSharp,  // SolSharp
-    A,  // La
-    ASharp,  // LaSharp
-    B   // Si
+    C,
+    CSharp,
+    D,
+    DSharp,
+    E,
+    F,
+    FSharp,
+    G,
+    GSharp,
+    A,
+    ASharp,
+    B
 }
 
 public class MusicPlayer : MonoBehaviour
 {
-    [TextArea(20, 50)]
-    public string jsonPartition;
-    public AudioClip[] notes; // Contient les 12 notes de base (une octave)
+    [Header("Settings")]
     public float tempo = 120f;
-    public PlayMode playMode = PlayMode.Partition; // Mode de lecture
-    private Dictionary<string, int> noteMap;
-    public Mode currentMode = Mode.Ionien;  // Mode choisi
-    public Tonalite currentTonalite = Tonalite.C;  // Tonalité choisie
-    public TrackMode trackMode = TrackMode.SingleTrack; // Mode de lecture des pistes
-
+    public PlayMode playMode = PlayMode.Partition;
+    public Mode currentMode = Mode.Ionien;
+    public Tonalite currentTonalite = Tonalite.C;
+    public TrackMode trackMode = TrackMode.SingleTrack;
+    public int minOctave = 3;
+    public int maxOctave = 6;
+    public int baseOctave = 5;
     private Dictionary<Mode, List<int>> modeIntervals = new Dictionary<Mode, List<int>>();
     private Dictionary<Tonalite, List<string>> tonaliteAccidentals = new Dictionary<Tonalite, List<string>>();
+
+    [Header("Partition")]
+    [TextArea(20, 50)]
+    public string jsonPartition;
+
+    [Header("References")]
+    public AudioClip[] notes;
+
+    private Dictionary<string, int> noteMap;
 
     void Start()
     {
@@ -80,16 +88,14 @@ public class MusicPlayer : MonoBehaviour
             {"FSharp", 6}, {"G", 7}, {"GSharp", 8}, {"A", 9}, {"ASharp", 10}, {"B", 11}
         };
 
-        // Initialisation des intervalles pour chaque mode
-        modeIntervals[Mode.Ionien] = new List<int> { 2, 2, 1, 2, 2, 2, 1 };  // Do majeur (Ionien)
-        modeIntervals[Mode.Dorien] = new List<int> { 2, 1, 2, 2, 2, 1, 2 };  // Ré Dorien
-        modeIntervals[Mode.Phrygien] = new List<int> { 1, 2, 2, 2, 1, 2, 2 };  // Mi Phrygien
-        modeIntervals[Mode.Lydien] = new List<int> { 2, 2, 2, 1, 2, 2, 1 };  // Fa Lydien
-        modeIntervals[Mode.Mixolydien] = new List<int> { 2, 2, 1, 2, 2, 1, 2 };  // Sol Mixolydien
-        modeIntervals[Mode.Aeolien] = new List<int> { 2, 1, 2, 2, 1, 2, 2 };  // La mineur naturel
-        modeIntervals[Mode.Locrien] = new List<int> { 1, 2, 2, 1, 2, 2, 2 };  // Si Locrien
+        modeIntervals[Mode.Ionien] = new List<int> { 2, 2, 1, 2, 2, 2, 1 };
+        modeIntervals[Mode.Dorien] = new List<int> { 2, 1, 2, 2, 2, 1, 2 };
+        modeIntervals[Mode.Phrygien] = new List<int> { 1, 2, 2, 2, 1, 2, 2 };
+        modeIntervals[Mode.Lydien] = new List<int> { 2, 2, 2, 1, 2, 2, 1 };
+        modeIntervals[Mode.Mixolydien] = new List<int> { 2, 2, 1, 2, 2, 1, 2 };
+        modeIntervals[Mode.Aeolien] = new List<int> { 2, 1, 2, 2, 1, 2, 2 };
+        modeIntervals[Mode.Locrien] = new List<int> { 1, 2, 2, 1, 2, 2, 2 };
 
-        // Initialisation des altérations pour chaque tonalité
         tonaliteAccidentals[Tonalite.C] = new List<string>();
         tonaliteAccidentals[Tonalite.CSharp] = new List<string> { "CSharp", "FSharp", "GSharp" };
         tonaliteAccidentals[Tonalite.D] = new List<string> { "FSharp" };
@@ -118,23 +124,22 @@ public class MusicPlayer : MonoBehaviour
     {
         switch (duration.ToLower())
         {
-            case "ronde":
+            case "whole":
                 return 4f * 60f / tempo;
-            case "blanche":
+            case "half":
                 return 2f * 60f / tempo;
-            case "noire":
+            case "quarter":
                 return 1f * 60f / tempo;
-            case "croche":
+            case "eighth":
                 return 0.5f * 60f / tempo;
-            case "doublecroche":
+            case "sixteenth":
                 return 0.25f * 60f / tempo;
-            case "triplecroche":
+            case "thirtysecond":
                 return 0.125f * 60f / tempo;
-            case "quadruplecroche":
+            case "sixtyfourth":
                 return 0.0625f * 60f / tempo;
             default:
-                Debug.LogError("Durée non reconnue : " + duration);
-                return 1f; // Valeur par défaut
+                return 1f;
         }
     }
 
@@ -142,7 +147,7 @@ public class MusicPlayer : MonoBehaviour
     {
         foreach (var block in partition.blocks)
         {
-            float durationInSeconds = GetDurationInSeconds(block.duration); // Convertir la durée en secondes
+            float durationInSeconds = GetDurationInSeconds(block.duration);
             if (block.type == "chord")
             {
                 PlayChord(block.value);
@@ -158,7 +163,7 @@ public class MusicPlayer : MonoBehaviour
     private void PlayChord(string chord)
     {
         GameObject chordObject = new GameObject("Chords = " + chord);
-        string[] noteArray = chord.Split(new char[] { '|' }, System.StringSplitOptions.RemoveEmptyEntries);  // On prend en compte les accords séparés par '|'
+        string[] noteArray = chord.Split(new char[] { '|' }, System.StringSplitOptions.RemoveEmptyEntries);
         foreach (string note in noteArray)
         {
             PlayNote(note.Trim(), 60f / tempo, chordObject);
@@ -177,23 +182,21 @@ public class MusicPlayer : MonoBehaviour
 
         try
         {
-            // Vérifier si l'entrée est un accord (séparé par un point-virgule)
             if (note.Contains(";"))
             {
-                string[] notesInChord = note.Split(';'); // Utiliser ; comme séparateur pour les notes d'un accord
+                string[] notesInChord = note.Split(';');
                 foreach (string chordNote in notesInChord)
                 {
-                    PlaySingleNote(chordNote.Trim(), duration, parent); // Appeler PlaySingleNote pour chaque note dans l'accord
+                    PlaySingleNote(chordNote.Trim(), duration, parent);
                 }
             }
             else
             {
-                PlaySingleNote(note, duration, parent); // Si ce n'est pas un accord, jouer la note seule
+                PlaySingleNote(note, duration, parent);
             }
         }
         catch (System.Exception e)
         {
-            Debug.LogError("Erreur lors de l'analyse de la note: " + note + " - " + e.Message);
         }
     }
 
@@ -201,32 +204,40 @@ public class MusicPlayer : MonoBehaviour
     {
         if (note.Length < 2) return;
 
-        if(note.Contains("#"))
+        if (note.Contains("#"))
         {
             note = note.Replace("#", "Sharp");
         }
 
         try
         {
-            // Identifier la note et l'octave
-            string noteKey = note.Length > 2 ? note.Substring(0, 2) : note.Substring(0, 1); // Pour gérer les dièses (par ex. ASharp)
+            string noteKey;
             int octave;
 
-            // Vérifier si l'octave est spécifiée après la note
-            if (note.Length > 2 && int.TryParse(note.Substring(note.Length - 1), out octave))
+            if (note.Length > 1 && int.TryParse(note[note.Length - 1].ToString(), out octave))
             {
-                // Si l'octave est un chiffre à la fin de la note, l'extraire
-                octave = int.Parse(note.Substring(note.Length - 1));
-                noteKey = note.Substring(0, note.Length - 1);  // La note sans l'octave
+                noteKey = note.Substring(0, note.Length - 1);
             }
             else
             {
-                // Si l'octave n'est pas spécifié, affecter une valeur par défaut
-                octave = 4; // On suppose l'octave 4 par défaut
+                noteKey = note;
+                octave = baseOctave;
             }
 
-            // Calcul de la fréquence de la note
-            float pitch = Mathf.Pow(2, (octave - 4) + noteMap[noteKey] / 12f);
+            if (!noteMap.ContainsKey(noteKey))
+            {
+                return;
+            }
+
+            int noteIndex = noteMap[noteKey];
+            int adjustedIndex = noteIndex + (octave - 4);
+
+            if (adjustedIndex < 0 || adjustedIndex >= notes.Length)
+            {
+                return;
+            }
+
+            float pitchFactor = Mathf.Pow(2, octave - baseOctave);
 
             GameObject noteObject = new GameObject(note);
             if (parent != null)
@@ -235,18 +246,15 @@ public class MusicPlayer : MonoBehaviour
             }
 
             AudioSource source = noteObject.AddComponent<AudioSource>();
-            int noteIndex = noteMap[noteKey] % notes.Length;
-            source.clip = notes[noteIndex] != null ? notes[noteIndex] : FindClosestAvailableNote(noteIndex);
-            source.pitch = pitch;
+            source.clip = notes[adjustedIndex];
+            source.pitch = pitchFactor;
             source.Play();
             StartCoroutine(DestroyAfterPlaying(noteObject, source));
         }
         catch (System.Exception e)
         {
-            Debug.LogError("Erreur lors de l'analyse de la note: " + note + " - " + e.Message);
         }
     }
-
 
     private IEnumerator DestroyAfterPlaying(GameObject noteObject, AudioSource source)
     {
@@ -263,160 +271,91 @@ public class MusicPlayer : MonoBehaviour
 
     private IEnumerator PlayTrackNotes(string trackType)
     {
-        // Générer une durée aléatoire en termes de valeurs musicales possibles
-        string[] possibleDurations = new string[] { "ronde", "blanche", "noire", "croche", "doublecroche" };
+        string[] possibleDurations = new string[] { "whole", "half", "quarter", "eighth", "sixteenth", "thirtysecond", "sixtyfourth" };
         string randomDuration = possibleDurations[Random.Range(0, possibleDurations.Length)];
 
-        float durationInSeconds = GetDurationInSeconds(randomDuration); // Convertir la durée en secondes selon le tempo
+        float durationInSeconds = GetDurationInSeconds(randomDuration);
 
         if (trackType == "track1")
         {
-            // Jouer la première piste (accord)
             string randomChord = GetRandomChord();
             PlayChord(randomChord);
         }
         else if (trackType == "track2")
         {
-            // Jouer la deuxième piste (note seule)
             string randomNote = GetRandomNote();
             PlayNote(randomNote, durationInSeconds, null);
         }
 
-        yield return new WaitForSeconds(durationInSeconds); // Attendre la durée correspondante
+        yield return new WaitForSeconds(durationInSeconds);
     }
 
     private IEnumerator PlayRandomNotes()
     {
         while (true)
         {
-            // Appeler la coroutine pour la première piste (accord) avec un temps d'attente spécifique
             StartCoroutine(PlayTrackNotes("track1"));
+            string[] possibleDurations = new string[] { "whole", "half", "quarter", "eighth", "sixteenth", "thirtysecond", "sixtyfourth" };
+            string randomDuration1 = possibleDurations[Random.Range(0, possibleDurations.Length)];
+            yield return new WaitForSeconds(GetDurationInSeconds(randomDuration1));
 
-            // Attendre avec une durée aléatoire pour la première piste avant de jouer la deuxième
-            yield return new WaitForSeconds(GetDurationInSeconds("ronde")); // Exemple d'attente pour la première piste, tu peux ajuster la durée ici si nécessaire
-
-            // Appeler la coroutine pour la deuxième piste (note seule) avec un temps d'attente spécifique
             StartCoroutine(PlayTrackNotes("track2"));
-
-            // Attendre avec une durée aléatoire pour la deuxième piste avant de recommencer
-            yield return new WaitForSeconds(GetDurationInSeconds("blanche")); // Exemple pour la deuxième piste
+            string randomDuration2 = possibleDurations[Random.Range(0, possibleDurations.Length)];
+            yield return new WaitForSeconds(GetDurationInSeconds(randomDuration2));
         }
     }
 
-
-
     private string GetRandomNote()
     {
-        // Récupérer les notes du mode en cours
         List<string> modeNotes = GetModeNotes(currentTonalite, currentMode);
-
-        // Choisir une note à partir de la tonique, de la dominante ou de la médiante
-        List<string> importantDegrees = new List<string> { modeNotes[0], modeNotes[2], modeNotes[4] }; // Tonique (I), Médiante (III), Dominante (V)
+        List<string> importantDegrees = new List<string> { modeNotes[0], modeNotes[2], modeNotes[4] };
         string note = importantDegrees[Random.Range(0, importantDegrees.Count)];
-
-        // Choisir un octave entre 3 et 6
-        int octave = Random.Range(3, 6);
-
-        return note + octave;  // Retourner la note avec l'octave
+        int octave = Random.Range(minOctave, maxOctave + 1);
+        return note + octave;
     }
 
     private string GetRandomChord()
     {
-        // Récupérer les notes du mode actuel
         List<string> modeNotes = GetModeNotes(currentTonalite, currentMode);
-
-        // Choisir un degré d'accord dans le mode (ex: I, IV, V, etc.)
         int degree = Random.Range(0, modeNotes.Count);
-
-        // Sélectionner la note de base (racine) de l'accord
         string rootNote = modeNotes[degree];
-        int octave = Random.Range(3, 6);  // Choisir un octave entre 3 et 6
+        int octave = Random.Range(minOctave, maxOctave + 1);
 
-        // Créer l'accord en fonction du mode
-        string chord = "|" + rootNote + octave + "|";
+        List<string> chordNotes = new List<string> { rootNote + octave };
 
-        // Déterminer l'accord à partir du mode :
-        // Ionien (majeur) : majeur sur I, IV, V, mineur sur II, III, VI, etc.
-        // Dorien : mineur sur I, III, V, VI, majeur sur IV, VII
-        // Phrygien : mineur sur I, II, V, VI, majeur sur III, VII
-        // Lydien : majeur sur I, II, III, V, mineur sur IV, VI, VII
-        // Mixolydien : majeur sur I, IV, V, mineur sur II, III, VI
-        // Aeolien (mineur naturel) : mineur sur I, II, III, V, VI, majeur sur IV, VII
-        // Locrien : diminué sur I, II, III, IV, mineur sur V, majeur sur VI, VII
+        // Ajout d'autres notes à l'accord (ex: 3e et 5e degrés)
+        chordNotes.Add(modeNotes[(degree + 2) % modeNotes.Count] + octave);  // 3e degré
+        chordNotes.Add(modeNotes[(degree + 4) % modeNotes.Count] + octave);  // 5e degré
 
-        if (currentMode == Mode.Ionien || currentMode == Mode.Lydien || currentMode == Mode.Mixolydien)
-        {
-            // Les modes majeurs (Ionien, Lydien, Mixolydien) sont souvent majeurs sur I, IV, V
-            chord += GetNoteByInterval(rootNote, 4) + octave + "|";  // Tierce majeure
-            chord += GetNoteByInterval(rootNote, 7) + octave + "|";  // Quinte
-        }
-        else if (currentMode == Mode.Dorien || currentMode == Mode.Phrygien || currentMode == Mode.Aeolien)
-        {
-            // Les modes mineurs (Dorien, Phrygien, Aeolien) sont mineurs sur I, III, V
-            chord += GetNoteByInterval(rootNote, 3) + octave + "|";  // Tierce mineure
-            chord += GetNoteByInterval(rootNote, 7) + octave + "|";  // Quinte
-        }
-        else if (currentMode == Mode.Locrien)
-        {
-            // Le mode Locrien crée un accord diminué (I, III, Vb)
-            chord += GetNoteByInterval(rootNote, 3) + octave + "|";  // Tierce mineure
-            chord += GetNoteByInterval(rootNote, 6) + octave + "|";  // Quinte diminuée
-        }
-
+        // Forme l'accord avec plusieurs notes
+        string chord = "|" + string.Join("|", chordNotes) + "|";
         return chord;
     }
+
 
     private List<string> GetModeNotes(Tonalite tonalite, Mode mode)
     {
         List<string> notesInScale = new List<string>();
-        int rootNoteIndex = noteMap[tonalite.ToString()];  // Trouver la position de la note de base dans le dictionnaire
-
-        // Obtenir les intervalles du mode
+        int rootNoteIndex = noteMap[tonalite.ToString()];
         List<int> intervals = modeIntervals[mode];
 
         for (int i = 0; i < 7; i++)
         {
-            // Calculer la note en fonction de la position et de l'intervalle
             int noteIndex = (rootNoteIndex + GetCumulativeInterval(intervals, i)) % 12;
             string note = noteMap.FirstOrDefault(x => x.Value == noteIndex).Key;
-
-            // Appliquer les altérations de la tonalité si nécessaire
-            if (tonaliteAccidentals[tonalite].Contains(note) && !note.Contains("Sharp"))
-            {
-                note += "Sharp"; // Ajouter un dièse si l'altération est présente et qu'il n'y en a pas déjà un
-            }
-
-            notesInScale.Add(note);  // Ajouter la note à la liste de la gamme
+            notesInScale.Add(note);
         }
 
-        return notesInScale;  // Retourner les notes du mode
+        return notesInScale;
     }
-
 
     private int GetCumulativeInterval(List<int> intervals, int index)
     {
-        int cumulativeInterval = 0;
+        int interval = 0;
         for (int i = 0; i <= index; i++)
         {
-            cumulativeInterval += intervals[i];
+            interval += intervals[i];
         }
-        return cumulativeInterval;
+        return interval;
     }
-
-    private string GetNoteByInterval(string rootNote, int interval)
-    {
-        int rootNoteIndex = noteMap[rootNote];  // Trouver l'index de la note de base dans le dictionnaire
-        int noteIndex = (rootNoteIndex + interval) % 12;  // Appliquer l'intervalle
-
-        // Vérifie si la note générée a besoin d'un dièse
-        string note = noteMap.FirstOrDefault(x => x.Value == noteIndex).Key;
-
-        if (note.Contains("#"))
-        {
-            note = note.Replace("#", "Sharp");  // Remplacer Sharp par un dièse dans la notation
-        }
-
-        return note;  // Retourner la note obtenue
-    }
-
 }
