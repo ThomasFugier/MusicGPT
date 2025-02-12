@@ -72,8 +72,8 @@ public class MusicPlayer : MonoBehaviour
     private Dictionary<Tonalite, List<string>> tonaliteAccidentals = new Dictionary<Tonalite, List<string>>();
 
     [Header("Partition")]
-    [TextArea(20, 50)]
-    public string jsonPartition;
+    public TextAsset partitionTextAsset;
+
 
     [Header("References")]
     public AudioClip[] notes;
@@ -109,11 +109,12 @@ public class MusicPlayer : MonoBehaviour
         tonaliteAccidentals[Tonalite.ASharp] = new List<string> { "FSharp", "CSharp", "GSharp" };
         tonaliteAccidentals[Tonalite.B] = new List<string> { "FSharp", "CSharp", "GSharp", "DSharp" };
 
-        if (playMode == PlayMode.Partition)
+        if (playMode == PlayMode.Partition && partitionTextAsset != null)
         {
-            Partition partition = JsonUtility.FromJson<Partition>(jsonPartition);
+            Partition partition = JsonUtility.FromJson<Partition>(partitionTextAsset.text);
             StartCoroutine(PlayPartition(partition));
         }
+
         else if (playMode == PlayMode.RandomPlaying)
         {
             StartCoroutine(PlayRandomNotes());
@@ -148,14 +149,17 @@ public class MusicPlayer : MonoBehaviour
         foreach (var block in partition.blocks)
         {
             float durationInSeconds = GetDurationInSeconds(block.duration);
+
             if (block.type == "chord")
             {
                 PlayChord(block.value);
             }
+
             else if (block.type == "note")
             {
                 StartCoroutine(PlayNoteRoutine(block.value, durationInSeconds));
             }
+
             yield return new WaitForSeconds(durationInSeconds);
         }
     }
@@ -163,7 +167,9 @@ public class MusicPlayer : MonoBehaviour
     private void PlayChord(string chord)
     {
         GameObject chordObject = new GameObject("Chords = " + chord);
+
         string[] noteArray = chord.Split(new char[] { '|' }, System.StringSplitOptions.RemoveEmptyEntries);
+
         foreach (string note in noteArray)
         {
             PlayNote(note.Trim(), 60f / tempo, chordObject);

@@ -480,7 +480,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: tempo
-      value: 120
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: playMode
@@ -504,38 +504,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: jsonPartition
-      value: "{\n  \"blocks\": [\n    { \"type\": \"chord\", \"value\": \"|C3|E3|G3|B3|\",
-        \"duration\": \"whole\" },\n    { \"type\": \"note\", \"value\": \"D5\",
-        \"duration\": \"eighth\" },\n    { \"type\": \"note\", \"value\": \"F5\",
-        \"duration\": \"eighth\" },\n\n    { \"type\": \"chord\", \"value\": \"|F3|A3|C4|E4|\",
-        \"duration\": \"half\" },\n    { \"type\": \"note\", \"value\": \"G5\", \"duration\":
-        \"eighth\" },\n    { \"type\": \"note\", \"value\": \"A5\", \"duration\":
-        \"eighth\" },\n\n    { \"type\": \"chord\", \"value\": \"|G3|B3|D4|F4|\",
-        \"duration\": \"half\" },\n    { \"type\": \"note\", \"value\": \"B5\", \"duration\":
-        \"eighth\" },\n    { \"type\": \"note\", \"value\": \"C6\", \"duration\":
-        \"eighth\" },\n\n    { \"type\": \"chord\", \"value\": \"|A3|C4|E4|G4|\",
-        \"duration\": \"half\" },\n    { \"type\": \"note\", \"value\": \"D6\", \"duration\":
-        \"eighth\" },\n    { \"type\": \"note\", \"value\": \"E5\", \"duration\":
-        \"eighth\" },\n\n    { \"type\": \"chord\", \"value\": \"|B3|D4|F4|A4|\",
-        \"duration\": \"whole\" },\n    { \"type\": \"note\", \"value\": \"C6\",
-        \"duration\": \"eighth\" },\n    { \"type\": \"note\", \"value\": \"D6\",
-        \"duration\": \"eighth\" },\n\n    { \"type\": \"chord\", \"value\": \"|F3|A3|C4|E4|\",
-        \"duration\": \"half\" },\n    { \"type\": \"note\", \"value\": \"F5\", \"duration\":
-        \"eighth\" },\n    { \"type\": \"note\", \"value\": \"G5\", \"duration\":
-        \"eighth\" },\n\n    { \"type\": \"chord\", \"value\": \"|C3|E3|G3|B3|\",
-        \"duration\": \"half\" },\n    { \"type\": \"note\", \"value\": \"A5\", \"duration\":
-        \"quarter\" },\n    { \"type\": \"note\", \"value\": \"C6\", \"duration\":
-        \"quarter\" },\n\n    { \"type\": \"chord\", \"value\": \"|G3|B3|D4|F4|\",
-        \"duration\": \"whole\" },\n    { \"type\": \"note\", \"value\": \"B4\",
-        \"duration\": \"eighth\" },\n\n    { \"type\": \"chord\", \"value\": \"|A3|C4|E4|G4|\",
-        \"duration\": \"half\" },\n    { \"type\": \"note\", \"value\": \"D6\", \"duration\":
-        \"eighth\" },\n    { \"type\": \"note\", \"value\": \"C5\", \"duration\":
-        \"eighth\" },\n\n    { \"type\": \"chord\", \"value\": \"|F3|A3|C4|E4|\",
-        \"duration\": \"half\" },\n    { \"type\": \"note\", \"value\": \"F5\", \"duration\":
-        \"quarter\" },\n    { \"type\": \"note\", \"value\": \"A4\", \"duration\":
-        \"quarter\" },\n\n    { \"type\": \"chord\", \"value\": \"|C3|E3|G3|B3|\",
-        \"duration\": \"whole\" },\n    { \"type\": \"note\", \"value\": \"C5\",
-        \"duration\": \"eighth\" }\n  ]\n}\n"
+      value: "{\n  \"blocks\": [\n    {\n      \"type\": \"chord\",\n      \"value\":
+        \"|G4|Bb4|D5|\",\n      \"duration\": \"whole\"\n    },\n    {\n      \"type\":
+        \"note\",\n      \"value\": \"G4\",\n      \"duration\": \"quarter\"\n   
+        },\n    {\n      \"type\": \"note\",\n      \"value\": \"A4\",\n      \"duration\":
+        \"quarter\"\n    },\n    {\n      \"type\": \"note\",\n      \"value\": \"Bb4\",\n     
+        \"duration\": \"quarter\"\n    },\n    {\n      \"type\": \"note\",\n     
+        \"value\": \"C5\",\n      \"duration\": \"quarter\"\n    },\n    {\n     
+        \"type\": \"chord\",\n      \"value\": \"|D4|F4|A4|\",\n      \"duration\":
+        \"half\"\n    },\n    {\n      \"type\": \"note\",\n      \"value\": \"D4\",\n     
+        \"duration\": \"half\"\n    },\n    {\n      \"type\": \"chord\",\n     
+        \"value\": \"|Eb4|G4|Bb4|\",\n      \"duration\": \"half\"\n    },\n    {\n     
+        \"type\": \"note\",\n      \"value\": \"F4\",\n      \"duration\": \"quarter\"\n   
+        },\n    {\n      \"type\": \"note\",\n      \"value\": \"G4\",\n      \"duration\":
+        \"quarter\"\n    },\n    {\n      \"type\": \"note\",\n      \"value\": \"A4\",\n     
+        \"duration\": \"quarter\"\n    },\n    {\n      \"type\": \"chord\",\n     
+        \"value\": \"|Bb4|D5|F5|\",\n      \"duration\": \"half\"\n    },\n    {\n     
+        \"type\": \"note\",\n      \"value\": \"C5\",\n      \"duration\": \"half\"\n   
+        },\n    {\n      \"type\": \"chord\",\n      \"value\": \"|G4|Bb4|D5|\",\n     
+        \"duration\": \"whole\"\n    },\n    {\n      \"type\": \"note\",\n     
+        \"value\": \"D5\",\n      \"duration\": \"quarter\"\n    },\n    {\n     
+        \"type\": \"note\",\n      \"value\": \"Eb5\",\n      \"duration\": \"quarter\"\n   
+        },\n    {\n      \"type\": \"note\",\n      \"value\": \"F5\",\n      \"duration\":
+        \"quarter\"\n    },\n    {\n      \"type\": \"note\",\n      \"value\": \"G5\",\n     
+        \"duration\": \"quarter\"\n    },\n    {\n      \"type\": \"chord\",\n     
+        \"value\": \"|F4|A4|C5|\",\n      \"duration\": \"half\"\n    },\n    {\n     
+        \"type\": \"note\",\n      \"value\": \"Bb4\",\n      \"duration\": \"half\"\n   
+        },\n    {\n      \"type\": \"chord\",\n      \"value\": \"|G4|Bb4|D5|\",\n     
+        \"duration\": \"whole\"\n    }\n  ]\n}\n"
       objectReference: {fileID: 0}
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: currentTonalite
@@ -546,53 +542,57 @@ PrefabInstance:
       value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
+      propertyPath: partitionTextAsset
+      value: 
+      objectReference: {fileID: 4900000, guid: 2800546b044a3d94a8da3e90b7aa0e27, type: 3}
+    - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: 'notes.Array.data[0]'
       value: 
-      objectReference: {fileID: 8300000, guid: 4d67b4b8a85cb744b9dc7dbd18d18edd, type: 3}
+      objectReference: {fileID: 8300000, guid: 5c533ec841c15e340a0e376d1072bda7, type: 3}
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: 'notes.Array.data[1]'
       value: 
-      objectReference: {fileID: 8300000, guid: b7ff00d6a9ed36b44adbba5bc79e7d7f, type: 3}
+      objectReference: {fileID: 8300000, guid: d6eba36013000c0419a93bc6b72570a2, type: 3}
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: 'notes.Array.data[2]'
       value: 
-      objectReference: {fileID: 8300000, guid: 4f757d2bb43de324185f5fb90a9e4692, type: 3}
+      objectReference: {fileID: 8300000, guid: 08ad74c7dbc413d4f9a159b87173f6e8, type: 3}
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: 'notes.Array.data[3]'
       value: 
-      objectReference: {fileID: 8300000, guid: bd7793702f1490743a5f76e66d7c23ed, type: 3}
+      objectReference: {fileID: 8300000, guid: 59a24540010a8e24fad1a211a1fb7a18, type: 3}
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: 'notes.Array.data[4]'
       value: 
-      objectReference: {fileID: 8300000, guid: 6ba39385cba702d4881507cf9baf5843, type: 3}
+      objectReference: {fileID: 8300000, guid: 3195064e71de94a45857b694f836f07a, type: 3}
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: 'notes.Array.data[5]'
       value: 
-      objectReference: {fileID: 8300000, guid: 7f1767f0ffe53934881c5ffadac3b8cd, type: 3}
+      objectReference: {fileID: 8300000, guid: 3cd7b2bb2ec16734985a6c7b1f16d365, type: 3}
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: 'notes.Array.data[6]'
       value: 
-      objectReference: {fileID: 8300000, guid: 2675914cec90c754ab3b976bf3f77312, type: 3}
+      objectReference: {fileID: 8300000, guid: 9b7ac438108dd854c9a53d1665396450, type: 3}
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: 'notes.Array.data[7]'
       value: 
-      objectReference: {fileID: 8300000, guid: 364b313c3ca6c454e93ffc9c24e8cc62, type: 3}
+      objectReference: {fileID: 8300000, guid: 548a3dba42ee457499c7f810bf18c463, type: 3}
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: 'notes.Array.data[8]'
       value: 
-      objectReference: {fileID: 8300000, guid: b4f0be36b1d2bf941b64e6ff01c443e1, type: 3}
+      objectReference: {fileID: 8300000, guid: 8a932ec9e63cb8f4395dbe5b826ebd1b, type: 3}
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: 'notes.Array.data[9]'
       value: 
-      objectReference: {fileID: 8300000, guid: f62a8dff213628a448799ad2b0c634bb, type: 3}
+      objectReference: {fileID: 8300000, guid: 47eebb9c0b36e1043ad92cac15245ccb, type: 3}
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: 'notes.Array.data[10]'
       value: 
-      objectReference: {fileID: 8300000, guid: 035464b2d4e14944caddcf3a39781a8f, type: 3}
+      objectReference: {fileID: 8300000, guid: c5034a9fd29006b4fb59a1451e0935eb, type: 3}
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: 'notes.Array.data[11]'
       value: 
-      objectReference: {fileID: 8300000, guid: b242a8086a8ef564fb96c2050c3ab1bf, type: 3}
+      objectReference: {fileID: 8300000, guid: 383a1c7e5e20b4342bd24bfb648b8cbf, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
