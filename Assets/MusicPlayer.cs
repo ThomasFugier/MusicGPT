@@ -138,6 +138,199 @@ public class MusicPlayer : MonoBehaviour
         UnityEngine.Random.InitState(randomSeed);
     }
 
+    #region Partition Playing
+    private IEnumerator PlayPartition(Partition partition)
+    {
+        yield return new WaitForSeconds(1f);
+
+        foreach (var block in partition.blocks)
+        {
+            float durationInSeconds = GetDurationInSeconds(block.duration);
+
+            if (block.type == "chord")
+            {
+                StartCoroutine(PlayChordRoutine(block.value, durationInSeconds));
+            }
+            else if (block.type == "note")
+            {
+                StartCoroutine(PlayNoteRoutine(block.value, durationInSeconds));
+            }
+
+            yield return new WaitForSeconds(durationInSeconds);
+        }
+    }
+
+
+
+    #endregion
+
+    #region Random Playing
+    private IEnumerator PlayTrackNotes(string trackType)
+    {
+        if (trackType == "track1") // Accord
+        {
+            yield return StartCoroutine(PlayTrackChord());
+        }
+        else if (trackType == "track2") // Note solo
+        {
+            yield return StartCoroutine(PlayTrackNote());
+        }
+    }
+
+
+    private string GetRandomNote()
+    {
+        List<string> modeNotes = GetModeNotes(currentTonalite, currentMode);
+        List<string> importantDegrees = new List<string> { modeNotes[0], modeNotes[2], modeNotes[4] }; // Notes importantes
+        string note = importantDegrees[Random.Range(0, importantDegrees.Count)];
+
+        int octave = Random.Range(minOctave, maxOctave + 1); // Choisir octave de manière modérée
+        return note + octave;
+    }
+
+    private string GetRandomChord(string chordType)
+    {
+        List<string> modeNotes = GetModeNotes(currentTonalite, currentMode);
+        int degree = Random.Range(0, modeNotes.Count);
+        string rootNote = modeNotes[degree];
+        int octave = Random.Range(minOctave, maxOctave + 1);
+
+        List<string> chordNotes = new List<string> { rootNote + octave };
+
+        switch (chordType)
+        {
+            case "major":
+                chordNotes.Add(modeNotes[(degree + 4) % modeNotes.Count] + octave);
+                chordNotes.Add(modeNotes[(degree + 7) % modeNotes.Count] + octave);
+                break;
+
+            case "minor":
+                chordNotes.Add(modeNotes[(degree + 3) % modeNotes.Count] + octave);
+                chordNotes.Add(modeNotes[(degree + 7) % modeNotes.Count] + octave);
+                break;
+
+            case "7":
+                chordNotes.Add(modeNotes[(degree + 4) % modeNotes.Count] + octave);
+                chordNotes.Add(modeNotes[(degree + 7) % modeNotes.Count] + octave);
+                chordNotes.Add(modeNotes[(degree + 10) % modeNotes.Count] + octave); // 7ème mineur
+                break;
+
+            case "maj7":
+                chordNotes.Add(modeNotes[(degree + 4) % modeNotes.Count] + octave);
+                chordNotes.Add(modeNotes[(degree + 7) % modeNotes.Count] + octave);
+                chordNotes.Add(modeNotes[(degree + 11) % modeNotes.Count] + octave); // 7ème majeure
+                break;
+
+            case "m7":
+                chordNotes.Add(modeNotes[(degree + 3) % modeNotes.Count] + octave);
+                chordNotes.Add(modeNotes[(degree + 7) % modeNotes.Count] + octave);
+                chordNotes.Add(modeNotes[(degree + 10) % modeNotes.Count] + octave); // 7ème mineure
+                break;
+
+            case "9":
+                chordNotes.Add(modeNotes[(degree + 4) % modeNotes.Count] + octave);
+                chordNotes.Add(modeNotes[(degree + 7) % modeNotes.Count] + octave);
+                chordNotes.Add(modeNotes[(degree + 10) % modeNotes.Count] + octave); // 7ème mineure
+                chordNotes.Add(modeNotes[(degree + 2) % modeNotes.Count] + octave); // 9ème
+                break;
+
+            case "m9":
+                chordNotes.Add(modeNotes[(degree + 3) % modeNotes.Count] + octave);
+                chordNotes.Add(modeNotes[(degree + 7) % modeNotes.Count] + octave);
+                chordNotes.Add(modeNotes[(degree + 10) % modeNotes.Count] + octave); // 7ème mineure
+                chordNotes.Add(modeNotes[(degree + 2) % modeNotes.Count] + octave); // 9ème
+                break;
+        }
+
+        // Créer l'accord sous forme de chaîne
+        string chord = "|" + string.Join("|", chordNotes) + "|";
+        return chord;
+    }
+
+    private IEnumerator PlayTrackChord()
+    {
+        string[] possibleDurations = new string[] { "whole", "half", "quarter", "eighth", "sixteenth", "thirtysecond", "sixtyfourth" }; // Toutes les durées possibles pour les accords
+        string randomDuration = possibleDurations[Random.Range(0, possibleDurations.Length)];
+        float durationInSeconds = GetDurationInSeconds(randomDuration);
+
+        // Parfois, on ne joue rien (blanc)
+        if (Random.value < 0.2f) // 20% de chance de ne pas jouer l'accord
+        {
+            yield return new WaitForSeconds(durationInSeconds); // Attendre la durée mais ne jouer aucun son
+            yield break;
+        }
+
+        // Choisir les types d'accords à jouer en fonction du seed
+        string[] chordTypes = { "major", "minor", "7", "maj7", "m7", "9", "m9" };
+        List<string> selectedChords = new List<string>();
+        int maxChords = 4; // Limiter à 4 types d'accords
+        int numChords = Mathf.Min(maxChords, chordTypes.Length);
+
+        // Sélectionner des types d'accords de manière cohérente avec le seed
+        for (int i = 0; i < numChords; i++)
+        {
+            int index = (randomSeed + i) % chordTypes.Length;
+            if (!selectedChords.Contains(chordTypes[index]))
+            {
+                selectedChords.Add(chordTypes[index]);
+            }
+        }
+
+        // Choisir un type d'accord parmi les types sélectionnés
+        string randomChordType = selectedChords[Random.Range(0, selectedChords.Count)];
+
+        // Générer et jouer l'accord
+        string randomChord = GetRandomChord(randomChordType);
+        StartCoroutine(PlayChordRoutine(randomChord, durationInSeconds));
+
+        // Attendre la durée de l'accord
+        yield return new WaitForSeconds(durationInSeconds);
+    }
+
+    private IEnumerator PlayTrackNote()
+    {
+        string[] possibleDurations = new string[] { "whole", "half", "quarter", "eighth", "sixteenth", "thirtysecond", "sixtyfourth" }; // Toutes les durées possibles pour les notes
+        string randomDuration = possibleDurations[Random.Range(0, possibleDurations.Length)];
+        float durationInSeconds = GetDurationInSeconds(randomDuration);
+
+        // Parfois, on ne joue rien (blanc)
+        if (Random.value < 0.2f) // 20% de chance de ne pas jouer la note
+        {
+            yield return new WaitForSeconds(durationInSeconds); // Attendre la durée mais ne jouer aucune note
+            yield break;
+        }
+
+        // Sinon, on génère et joue la note
+        string randomNote = GetRandomNote();
+        PlayNote(randomNote, durationInSeconds, null);
+
+        // Attendre la durée de la note
+        yield return new WaitForSeconds(durationInSeconds);
+    }
+
+    private IEnumerator PlayRandomNotes()
+    {
+        while (true)
+        {
+            // Jouer un accord avec une petite pause
+            yield return StartCoroutine(PlayTrackNotes("track1"));
+
+            // Choisir une durée pour l'accord
+            string[] possibleDurations = new string[] { "whole", "half", "quarter" }; // Durées plus cohérentes
+            string randomDuration1 = possibleDurations[Random.Range(0, possibleDurations.Length)];
+            yield return new WaitForSeconds(GetDurationInSeconds(randomDuration1));
+
+            // Jouer une note avec une petite pause
+            yield return StartCoroutine(PlayTrackNotes("track2"));
+
+            // Choisir une durée pour la note
+            string randomDuration2 = possibleDurations[Random.Range(0, possibleDurations.Length)];
+            yield return new WaitForSeconds(GetDurationInSeconds(randomDuration2));
+        }
+    }
+    #endregion
+
+    #region Notes Generation
     private float GetDurationInSeconds(string duration)
     {
         switch (duration.ToLower())
@@ -160,28 +353,6 @@ public class MusicPlayer : MonoBehaviour
                 return 1f;
         }
     }
-
-    private IEnumerator PlayPartition(Partition partition)
-    {
-        yield return new WaitForSeconds(1f);
-
-        foreach (var block in partition.blocks)
-        {
-            float durationInSeconds = GetDurationInSeconds(block.duration);
-
-            if (block.type == "chord")
-            {
-                StartCoroutine(PlayChordRoutine(block.value, durationInSeconds));
-            }
-            else if (block.type == "note")
-            {
-                StartCoroutine(PlayNoteRoutine(block.value, durationInSeconds));
-            }
-
-            yield return new WaitForSeconds(durationInSeconds);
-        }
-    }
-
     private IEnumerator PlayChordRoutine(string chord, float duration)
     {
         AudioSource[] sources = PlayChord(chord, duration);
@@ -339,175 +510,6 @@ public class MusicPlayer : MonoBehaviour
         Destroy(noteObject);
     }
 
-    private AudioClip FindClosestAvailableNote(int index)
-    {
-        int prevIndex = (index - 1 + notes.Length) % notes.Length;
-        int nextIndex = (index + 1) % notes.Length;
-        return notes[prevIndex] != null ? notes[prevIndex] : notes[nextIndex];
-    }
-
-    private IEnumerator PlayTrackNotes(string trackType)
-    {
-        if (trackType == "track1") // Accord
-        {
-            yield return StartCoroutine(PlayTrackChord());
-        }
-        else if (trackType == "track2") // Note solo
-        {
-            yield return StartCoroutine(PlayTrackNote());
-        }
-    }
-
-    private IEnumerator PlayTrackChord()
-    {
-        string[] possibleDurations = new string[] { "whole", "half", "quarter", "eighth", "sixteenth", "thirtysecond", "sixtyfourth" }; // Toutes les durées possibles pour les accords
-        string randomDuration = possibleDurations[Random.Range(0, possibleDurations.Length)];
-        float durationInSeconds = GetDurationInSeconds(randomDuration);
-
-        // Parfois, on ne joue rien (blanc)
-        if (Random.value < 0.2f) // 20% de chance de ne pas jouer l'accord
-        {
-            yield return new WaitForSeconds(durationInSeconds); // Attendre la durée mais ne jouer aucun son
-            yield break;
-        }
-
-        // Choisir les types d'accords à jouer en fonction du seed
-        string[] chordTypes = { "major", "minor", "7", "maj7", "m7", "9", "m9" };
-        List<string> selectedChords = new List<string>();
-        int maxChords = 4; // Limiter à 4 types d'accords
-        int numChords = Mathf.Min(maxChords, chordTypes.Length);
-
-        // Sélectionner des types d'accords de manière cohérente avec le seed
-        for (int i = 0; i < numChords; i++)
-        {
-            int index = (randomSeed + i) % chordTypes.Length;
-            if (!selectedChords.Contains(chordTypes[index]))
-            {
-                selectedChords.Add(chordTypes[index]);
-            }
-        }
-
-        // Choisir un type d'accord parmi les types sélectionnés
-        string randomChordType = selectedChords[Random.Range(0, selectedChords.Count)];
-
-        // Générer et jouer l'accord
-        string randomChord = GetRandomChord(randomChordType);
-        StartCoroutine(PlayChordRoutine(randomChord, durationInSeconds));
-
-        // Attendre la durée de l'accord
-        yield return new WaitForSeconds(durationInSeconds);
-    }
-
-    private IEnumerator PlayTrackNote()
-    {
-        string[] possibleDurations = new string[] { "whole", "half", "quarter", "eighth", "sixteenth", "thirtysecond", "sixtyfourth" }; // Toutes les durées possibles pour les notes
-        string randomDuration = possibleDurations[Random.Range(0, possibleDurations.Length)];
-        float durationInSeconds = GetDurationInSeconds(randomDuration);
-
-        // Parfois, on ne joue rien (blanc)
-        if (Random.value < 0.2f) // 20% de chance de ne pas jouer la note
-        {
-            yield return new WaitForSeconds(durationInSeconds); // Attendre la durée mais ne jouer aucune note
-            yield break;
-        }
-
-        // Sinon, on génère et joue la note
-        string randomNote = GetRandomNote();
-        PlayNote(randomNote, durationInSeconds, null);
-
-        // Attendre la durée de la note
-        yield return new WaitForSeconds(durationInSeconds);
-    }
-
-    private IEnumerator PlayRandomNotes()
-    {
-        while (true)
-        {
-            // Jouer un accord avec une petite pause
-            yield return StartCoroutine(PlayTrackNotes("track1"));
-
-            // Choisir une durée pour l'accord
-            string[] possibleDurations = new string[] { "whole", "half", "quarter" }; // Durées plus cohérentes
-            string randomDuration1 = possibleDurations[Random.Range(0, possibleDurations.Length)];
-            yield return new WaitForSeconds(GetDurationInSeconds(randomDuration1));
-
-            // Jouer une note avec une petite pause
-            yield return StartCoroutine(PlayTrackNotes("track2"));
-
-            // Choisir une durée pour la note
-            string randomDuration2 = possibleDurations[Random.Range(0, possibleDurations.Length)];
-            yield return new WaitForSeconds(GetDurationInSeconds(randomDuration2));
-        }
-    }
-
-    private string GetRandomNote()
-    {
-        List<string> modeNotes = GetModeNotes(currentTonalite, currentMode);
-        List<string> importantDegrees = new List<string> { modeNotes[0], modeNotes[2], modeNotes[4] }; // Notes importantes
-        string note = importantDegrees[Random.Range(0, importantDegrees.Count)];
-
-        int octave = Random.Range(minOctave, maxOctave + 1); // Choisir octave de manière modérée
-        return note + octave;
-    }
-
-    private string GetRandomChord(string chordType)
-    {
-        List<string> modeNotes = GetModeNotes(currentTonalite, currentMode);
-        int degree = Random.Range(0, modeNotes.Count);
-        string rootNote = modeNotes[degree];
-        int octave = Random.Range(minOctave, maxOctave + 1);
-
-        List<string> chordNotes = new List<string> { rootNote + octave };
-
-        switch (chordType)
-        {
-            case "major":
-                chordNotes.Add(modeNotes[(degree + 4) % modeNotes.Count] + octave);
-                chordNotes.Add(modeNotes[(degree + 7) % modeNotes.Count] + octave);
-                break;
-
-            case "minor":
-                chordNotes.Add(modeNotes[(degree + 3) % modeNotes.Count] + octave);
-                chordNotes.Add(modeNotes[(degree + 7) % modeNotes.Count] + octave);
-                break;
-
-            case "7":
-                chordNotes.Add(modeNotes[(degree + 4) % modeNotes.Count] + octave);
-                chordNotes.Add(modeNotes[(degree + 7) % modeNotes.Count] + octave);
-                chordNotes.Add(modeNotes[(degree + 10) % modeNotes.Count] + octave); // 7ème mineur
-                break;
-
-            case "maj7":
-                chordNotes.Add(modeNotes[(degree + 4) % modeNotes.Count] + octave);
-                chordNotes.Add(modeNotes[(degree + 7) % modeNotes.Count] + octave);
-                chordNotes.Add(modeNotes[(degree + 11) % modeNotes.Count] + octave); // 7ème majeure
-                break;
-
-            case "m7":
-                chordNotes.Add(modeNotes[(degree + 3) % modeNotes.Count] + octave);
-                chordNotes.Add(modeNotes[(degree + 7) % modeNotes.Count] + octave);
-                chordNotes.Add(modeNotes[(degree + 10) % modeNotes.Count] + octave); // 7ème mineure
-                break;
-
-            case "9":
-                chordNotes.Add(modeNotes[(degree + 4) % modeNotes.Count] + octave);
-                chordNotes.Add(modeNotes[(degree + 7) % modeNotes.Count] + octave);
-                chordNotes.Add(modeNotes[(degree + 10) % modeNotes.Count] + octave); // 7ème mineure
-                chordNotes.Add(modeNotes[(degree + 2) % modeNotes.Count] + octave); // 9ème
-                break;
-
-            case "m9":
-                chordNotes.Add(modeNotes[(degree + 3) % modeNotes.Count] + octave);
-                chordNotes.Add(modeNotes[(degree + 7) % modeNotes.Count] + octave);
-                chordNotes.Add(modeNotes[(degree + 10) % modeNotes.Count] + octave); // 7ème mineure
-                chordNotes.Add(modeNotes[(degree + 2) % modeNotes.Count] + octave); // 9ème
-                break;
-        }
-
-        // Créer l'accord sous forme de chaîne
-        string chord = "|" + string.Join("|", chordNotes) + "|";
-        return chord;
-    }
 
     private List<string> GetModeNotes(Tonalite tonalite, Mode mode)
     {
@@ -534,4 +536,6 @@ public class MusicPlayer : MonoBehaviour
         }
         return interval;
     }
+
+    #endregion
 }
