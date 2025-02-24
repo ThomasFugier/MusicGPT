@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -91,9 +92,14 @@ public class MusicPlayer : MonoBehaviour
     [Header("Partition")]
     public TextAsset partitionTextAsset;
 
+    [Space]
     [Header("References")]
     public AudioClip[] notes;
     public Keyboard keyboard;
+
+    [Space]
+    [Header("Infos")]
+    public List<Tonalite> notesInScale;
 
     private Dictionary<string, int> noteMap;
 
@@ -140,6 +146,11 @@ public class MusicPlayer : MonoBehaviour
         UnityEngine.Random.InitState(randomSeed);
     }
 
+    public void Update()
+    {
+        notesInScale = GetNotesInScale(currentTonalite, currentMode);
+    }
+
     #region Partition Playing
     private IEnumerator PlayPartition(Partition partition)
     {
@@ -184,18 +195,18 @@ public class MusicPlayer : MonoBehaviour
     {
         List<string> modeNotes = GetModeNotes(currentTonalite, currentMode);
         List<string> importantDegrees = new List<string> { modeNotes[0], modeNotes[2], modeNotes[4] }; // Notes importantes
-        string note = importantDegrees[Random.Range(0, importantDegrees.Count)];
+        string note = importantDegrees[UnityEngine.Random.Range(0, importantDegrees.Count)];
 
-        int octave = Random.Range(minOctave, maxOctave + 1); // Choisir octave de manière modérée
+        int octave = UnityEngine.Random.Range(minOctave, maxOctave + 1); // Choisir octave de manière modérée
         return note + octave;
     }
 
     private string GetRandomChord(string chordType)
     {
         List<string> modeNotes = GetModeNotes(currentTonalite, currentMode);
-        int degree = Random.Range(0, modeNotes.Count);
+        int degree = UnityEngine.Random.Range(0, modeNotes.Count);
         string rootNote = modeNotes[degree];
-        int octave = Random.Range(minOctave, maxOctave + 1);
+        int octave = UnityEngine.Random.Range(minOctave, maxOctave + 1);
 
         List<string> chordNotes = new List<string> { rootNote + octave };
 
@@ -252,11 +263,11 @@ public class MusicPlayer : MonoBehaviour
     private IEnumerator PlayTrackChord()
     {
         string[] possibleDurations = new string[] { "whole", "half", "quarter", "eighth", "sixteenth", "thirtysecond", "sixtyfourth" }; // Toutes les durées possibles pour les accords
-        string randomDuration = possibleDurations[Random.Range(0, possibleDurations.Length)];
+        string randomDuration = possibleDurations[UnityEngine.Random.Range(0, possibleDurations.Length)];
         float durationInSeconds = GetDurationInSeconds(randomDuration);
 
         // Parfois, on ne joue rien (blanc)
-        if (Random.value < 0.2f) // 20% de chance de ne pas jouer l'accord
+        if (UnityEngine.Random.value < 0.2f) // 20% de chance de ne pas jouer l'accord
         {
             yield return new WaitForSeconds(durationInSeconds); // Attendre la durée mais ne jouer aucun son
             yield break;
@@ -279,7 +290,7 @@ public class MusicPlayer : MonoBehaviour
         }
 
         // Choisir un type d'accord parmi les types sélectionnés
-        string randomChordType = selectedChords[Random.Range(0, selectedChords.Count)];
+        string randomChordType = selectedChords[UnityEngine.Random.Range(0, selectedChords.Count)];
 
         // Générer et jouer l'accord
         string randomChord = GetRandomChord(randomChordType);
@@ -292,11 +303,11 @@ public class MusicPlayer : MonoBehaviour
     private IEnumerator PlayTrackNote()
     {
         string[] possibleDurations = new string[] { "whole", "half", "quarter", "eighth", "sixteenth", "thirtysecond", "sixtyfourth" }; // Toutes les durées possibles pour les notes
-        string randomDuration = possibleDurations[Random.Range(0, possibleDurations.Length)];
+        string randomDuration = possibleDurations[UnityEngine.Random.Range(0, possibleDurations.Length)];
         float durationInSeconds = GetDurationInSeconds(randomDuration);
 
         // Parfois, on ne joue rien (blanc)
-        if (Random.value < 0.2f) // 20% de chance de ne pas jouer la note
+        if (UnityEngine.Random.value < 0.2f) // 20% de chance de ne pas jouer la note
         {
             yield return new WaitForSeconds(durationInSeconds); // Attendre la durée mais ne jouer aucune note
             yield break;
@@ -319,14 +330,14 @@ public class MusicPlayer : MonoBehaviour
 
             // Choisir une durée pour l'accord
             string[] possibleDurations = new string[] { "whole", "half", "quarter" }; // Durées plus cohérentes
-            string randomDuration1 = possibleDurations[Random.Range(0, possibleDurations.Length)];
+            string randomDuration1 = possibleDurations[UnityEngine.Random.Range(0, possibleDurations.Length)];
             yield return new WaitForSeconds(GetDurationInSeconds(randomDuration1));
 
             // Jouer une note avec une petite pause
             yield return StartCoroutine(PlayTrackNotes("track2"));
 
             // Choisir une durée pour la note
-            string randomDuration2 = possibleDurations[Random.Range(0, possibleDurations.Length)];
+            string randomDuration2 = possibleDurations[UnityEngine.Random.Range(0, possibleDurations.Length)];
             yield return new WaitForSeconds(GetDurationInSeconds(randomDuration2));
         }
     }
@@ -364,6 +375,25 @@ public class MusicPlayer : MonoBehaviour
         {
             StartCoroutine(FadeOutNoteVolume(source, sustain));
         }
+    }
+
+    public List<Tonalite> GetNotesInScale(Tonalite baseTonalite, Mode mode)
+    {
+        if (!noteMap.ContainsKey(baseTonalite.ToString()) || !modeIntervals.ContainsKey(mode))
+            return new List<Tonalite>();
+
+        List<Tonalite> scaleNotes = new List<Tonalite>();
+        int baseIndex = noteMap[baseTonalite.ToString()];
+        scaleNotes.Add(baseTonalite);
+
+        foreach (int interval in modeIntervals[mode])
+        {
+            baseIndex = (baseIndex + interval) % 12;
+            Tonalite nextNote = (Tonalite)Enum.Parse(typeof(Tonalite), noteMap.FirstOrDefault(x => x.Value == baseIndex).Key);
+            scaleNotes.Add(nextNote);
+        }
+
+        return scaleNotes;
     }
 
     private AudioSource[] PlayChord(string chord, float duration)
