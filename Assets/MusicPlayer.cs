@@ -84,6 +84,11 @@ public class MusicPlayer : MonoBehaviour
     public int baseOctave = 5;
     public int randomSeed;
 
+    [Header("Wave Settings")]
+    public float baseWavePitch = 1;
+    [Range(0.0f, 1.0f)]
+    public float baseWaveVolume;
+
     // Offset d'octave pour la lecture de la partition
     public OctaveShift octaveShift = OctaveShift.None;
     private Dictionary<Mode, List<int>> modeIntervals = new Dictionary<Mode, List<int>>();
@@ -96,6 +101,7 @@ public class MusicPlayer : MonoBehaviour
     [Header("References")]
     public AudioClip[] notes;
     public Keyboard keyboard;
+    public AudioSource baseWave;
 
     [Space]
     [Header("Infos")]
@@ -148,7 +154,59 @@ public class MusicPlayer : MonoBehaviour
 
     public void Update()
     {
+        SetNotesInScale();
+
+        // Ajustement du pitch basé sur la tonalité choisie
+        float pitchAdjustment = GetPitchAdjustmentForTonalite(currentTonalite);
+        baseWave.pitch = Mathf.Lerp(baseWave.pitch, baseWavePitch * pitchAdjustment, Time.deltaTime * 5);  // Appliquer le pitch ajusté
+        baseWave.volume = baseWaveVolume;
+    }
+
+    public void SetNotesInScale()
+    {
         notesInScale = GetNotesInScale(currentTonalite, currentMode);
+
+        for(int i = 0; i < keyboard.octaves.Count; i++)
+        {
+            for(int j = 0; j < keyboard.octaves[i].tiles.Length; j++)
+            {
+                bool isInScale = false;
+
+                foreach (Tonalite note in notesInScale)
+                {
+                    if (keyboard.octaves[i].tiles[j].tonalite == note)
+                    {
+                        isInScale = true;
+                        break;
+                    }
+                }
+
+                keyboard.octaves[i].tiles[j].isInScale = isInScale;
+            }
+        }
+    }
+   
+    private float GetPitchAdjustmentForTonalite(Tonalite tonalite)
+    {
+        // Créer une liste des tonalités avec leur position relative à C
+        Dictionary<Tonalite, float> tonaliteOffsets = new Dictionary<Tonalite, float>
+        {
+        {Tonalite.C, 0f},
+        {Tonalite.CSharp, 1f / 12f},
+        {Tonalite.D, 2f / 12f},
+        {Tonalite.DSharp, 3f / 12f},
+        {Tonalite.E, 4f / 12f},
+        {Tonalite.F, 5f / 12f},
+        {Tonalite.FSharp, 6f / 12f},
+        {Tonalite.G, 7f / 12f},
+        {Tonalite.GSharp, 8f / 12f},
+        {Tonalite.A, 9f / 12f},
+        {Tonalite.ASharp, 10f / 12f},
+        {Tonalite.B, 11f / 12f}
+        };
+
+        // Retourne le facteur de transposition pour la tonalité donnée
+        return Mathf.Pow(2, tonaliteOffsets[tonalite]);
     }
 
     #region Partition Playing

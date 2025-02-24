@@ -9,8 +9,24 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public Button button;
     public Tonalite tonalite;
     public TMPro.TextMeshProUGUI text;
+    public Color highlightColor;
+    public UnityEngine.UI.Image highlight;
 
     private float startTime;
+    public bool isInScale = false;
+
+    public void Update()
+    {
+        if(isInScale)
+        {
+            highlight.color = Color.Lerp(highlight.color, highlightColor, Time.deltaTime * 3);
+        }
+
+        else
+        {
+            highlight.color = Color.Lerp(highlight.color, Color.clear, Time.deltaTime * 3);
+        }
+    }
 
     public void Start()
     {
@@ -73,6 +89,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public void OnPointerDown(PointerEventData eventData)
     {
         thisOctave.keyboard.PlayTone(tonalite, thisOctave.octaveIndex);
+        Debug.Log("ICI");
     }
 
     public void OnPointerUp(PointerEventData eventData)

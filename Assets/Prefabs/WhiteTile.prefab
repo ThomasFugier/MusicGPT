@@ -139,6 +139,9 @@ MonoBehaviour:
   button: {fileID: 5641425539375899653}
   tonalite: 0
   text: {fileID: 7857093299149428384}
+  highlightColor: {r: 1, g: 0.8688347, b: 0.41320753, a: 1}
+  highlight: {fileID: 6166016292905621929}
+  isInScale: 0
 --- !u!1 &2792686476932707774
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,7 +202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 0.7473344, b: 0.216981, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -318,7 +321,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
