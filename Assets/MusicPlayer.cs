@@ -28,7 +28,8 @@ public enum TrackMode
 public enum PlayMode
 {
     Partition,
-    RandomPlaying
+    RandomPlaying,
+    Off
 }
 
 public enum Mode
@@ -92,6 +93,7 @@ public class MusicPlayer : MonoBehaviour
 
     [Header("References")]
     public AudioClip[] notes;
+    public Keyboard keyboard;
 
     private Dictionary<string, int> noteMap;
 
@@ -389,7 +391,7 @@ public class MusicPlayer : MonoBehaviour
         StartCoroutine(FadeOutNoteVolume(source, sustain));
     }
 
-    private AudioSource PlayNote(string note, float duration, GameObject parent)
+    public AudioSource PlayNote(string note, float duration, GameObject parent)
     {
 
         if (string.IsNullOrEmpty(note)) return null;
@@ -416,7 +418,7 @@ public class MusicPlayer : MonoBehaviour
         return null;
     }
 
-    private AudioSource PlaySingleNote(string note, float duration, GameObject parent)
+    public AudioSource PlaySingleNote(string note, float duration, GameObject parent)
     {
         string noteIndexDebug = "";
 
@@ -480,6 +482,7 @@ public class MusicPlayer : MonoBehaviour
 
             return source;
         }
+
         catch (System.Exception e)
         {
             Debug.LogError("Error in PlaySingleNote: " + noteIndexDebug);
