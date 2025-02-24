@@ -14,17 +14,29 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     private float startTime;
     public bool isInScale = false;
+    public bool canBeHighlighted = false;
+    public bool canBeLocked = false;
 
     public void Update()
     {
-        if(isInScale)
+        if(isInScale && canBeHighlighted)
         {
-            highlight.color = Color.Lerp(highlight.color, highlightColor, Time.deltaTime * 3);
+            highlight.color = Color.Lerp(highlight.color, highlightColor, Time.deltaTime * 6);
         }
 
         else
         {
-            highlight.color = Color.Lerp(highlight.color, Color.clear, Time.deltaTime * 3);
+            highlight.color = Color.Lerp(highlight.color, new Color(highlightColor.r, highlightColor.g, highlightColor.b, 0), Time.deltaTime * 6);
+        }
+
+        if(canBeLocked && isInScale == false)
+        {
+            button.interactable = false;
+        }
+
+        else
+        {
+            button.interactable = true;
         }
     }
 
@@ -88,8 +100,8 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if(button.IsInteractable() == true)
         thisOctave.keyboard.PlayTone(tonalite, thisOctave.octaveIndex);
-        Debug.Log("ICI");
     }
 
     public void OnPointerUp(PointerEventData eventData)

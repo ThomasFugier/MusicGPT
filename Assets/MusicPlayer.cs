@@ -99,6 +99,7 @@ public class MusicPlayer : MonoBehaviour
 
     [Space]
     [Header("References")]
+    public Settings settings;
     public AudioClip[] notes;
     public Keyboard keyboard;
     public AudioSource baseWave;
@@ -162,13 +163,14 @@ public class MusicPlayer : MonoBehaviour
         baseWave.volume = baseWaveVolume;
     }
 
+    
     public void SetNotesInScale()
     {
         notesInScale = GetNotesInScale(currentTonalite, currentMode);
 
         for(int i = 0; i < keyboard.octaves.Count; i++)
         {
-            for(int j = 0; j < keyboard.octaves[i].tiles.Length; j++)
+            for (int j = 0; j < keyboard.octaves[i].tiles.Length; j++)
             {
                 bool isInScale = false;
 
@@ -181,7 +183,26 @@ public class MusicPlayer : MonoBehaviour
                     }
                 }
 
+                if (settings.highlightScales.isOn)
+                {
+                    keyboard.octaves[i].tiles[j].canBeHighlighted = true;
+                }
+
+                else
+                {
+                    keyboard.octaves[i].tiles[j].canBeHighlighted = false;
+                }
+
                 keyboard.octaves[i].tiles[j].isInScale = isInScale;
+
+                if (settings.lockKeys.isOn)
+                {
+                    keyboard.octaves[i].tiles[j].canBeLocked = true;
+                }
+                else
+                {
+                    keyboard.octaves[i].tiles[j].canBeLocked = false;
+                }
             }
         }
     }
@@ -247,7 +268,6 @@ public class MusicPlayer : MonoBehaviour
             yield return StartCoroutine(PlayTrackNote());
         }
     }
-
 
     private string GetRandomNote()
     {
