@@ -449,13 +449,15 @@ public class MusicPlayer : MonoBehaviour
 
     private IEnumerator PlayRandomNotes()
     {
+        yield return new WaitForSeconds(2);
+
         while (true)
         {
             // Jouer un accord avec une petite pause
             yield return StartCoroutine(PlayTrackNotes("track1"));
 
             // Choisir une dur�e pour l'accord
-            string[] possibleDurations = new string[] { "whole", "half", "quarter" }; // Dur�es plus coh�rentes
+            string[] possibleDurations = new string[] {"half", "quarter", "eighth" }; // Dur�es plus coh�rentes
             string randomDuration1 = possibleDurations[UnityEngine.Random.Range(0, possibleDurations.Length)];
             yield return new WaitForSeconds(GetDurationInSeconds(randomDuration1));
 
