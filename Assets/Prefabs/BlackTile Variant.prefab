@@ -46,15 +46,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5641425539375899653, guid: 5c48646bc40771e4aa82074a3137742c, type: 3}
       propertyPath: m_Colors.m_PressedColor.b
-      value: 0.5245282
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5641425539375899653, guid: 5c48646bc40771e4aa82074a3137742c, type: 3}
       propertyPath: m_Colors.m_PressedColor.g
-      value: 0.5245282
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5641425539375899653, guid: 5c48646bc40771e4aa82074a3137742c, type: 3}
       propertyPath: m_Colors.m_PressedColor.r
-      value: 0.5245282
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5641425539375899653, guid: 5c48646bc40771e4aa82074a3137742c, type: 3}
       propertyPath: m_Colors.m_HighlightedColor.b
@@ -72,21 +72,29 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6612465897132716268, guid: 5c48646bc40771e4aa82074a3137742c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -31.7
+      objectReference: {fileID: 0}
     - target: {fileID: 6685656834915826130, guid: 5c48646bc40771e4aa82074a3137742c, type: 3}
       propertyPath: tonalite
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6685656834915826130, guid: 5c48646bc40771e4aa82074a3137742c, type: 3}
+      propertyPath: isWhiteTile
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7294387104885211481, guid: 5c48646bc40771e4aa82074a3137742c, type: 3}
       propertyPath: m_Color.b
-      value: 0.16981131
+      value: 0.101960786
       objectReference: {fileID: 0}
     - target: {fileID: 7294387104885211481, guid: 5c48646bc40771e4aa82074a3137742c, type: 3}
       propertyPath: m_Color.g
-      value: 0.16981131
+      value: 0.101960786
       objectReference: {fileID: 0}
     - target: {fileID: 7294387104885211481, guid: 5c48646bc40771e4aa82074a3137742c, type: 3}
       propertyPath: m_Color.r
-      value: 0.16981131
+      value: 0.101960786
       objectReference: {fileID: 0}
     - target: {fileID: 7570344148024159217, guid: 5c48646bc40771e4aa82074a3137742c, type: 3}
       propertyPath: m_Pivot.x

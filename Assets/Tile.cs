@@ -2,8 +2,9 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-
-public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+using DG.Tweening;
+using System.Collections;
+public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public Octave thisOctave;
     public Button button;
@@ -16,6 +17,9 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public bool isInScale = false;
     public bool canBeHighlighted = false;
     public bool canBeLocked = false;
+
+    private bool isDown;
+    public bool isWhiteTile;
 
     public void Update()
     {
@@ -100,12 +104,84 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if(button.IsInteractable() == true)
-        thisOctave.keyboard.PlayTone(tonalite, thisOctave.octaveIndex);
+        if (button.IsInteractable())
+        {
+            thisOctave.keyboard.PlayTone(tonalite, thisOctave.octaveIndex);
+            PressVisual();
+        }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (Input.GetMouseButton(0) && button.IsInteractable())
+        {
+            thisOctave.keyboard.PlayTone(tonalite, thisOctave.octaveIndex);
+            PressVisual();
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        button.OnPointerUp(eventData);
+
+        if(isDown)
+        {
+            ReleaseVisual();
+        }
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        
+        ReleaseVisual();
+    }
+
+    private void PressVisual()
+    {
+        transform.DOKill();
+        transform.localScale = Vector3.one;
+        transform.DOScale(Vector3.one * 0.9f, 0.1f);
+
+        if(isWhiteTile)
+        {
+            button.image.DOColor(new Color(0.8f, 0.8f, 0.8f, 1), 0.1f);
+        }
+
+        else
+        {
+            button.image.DOColor(new Color(0.2f, 0.2f, 0.2f, 1), 0.1f);
+        }
+
+        isDown = true;
+    }
+
+    private void ReleaseVisual()
+    {
+        transform.DOKill();
+        transform.DOScale(Vector3.one, 0.1f);
+
+        if (isWhiteTile)
+        {
+            button.image.DOColor(new Color(1, 1, 1, 1), 0.1f);
+        }
+
+        else
+        {
+            button.image.DOColor(new Color(0.1f, 0.1f, 0.1f, 1), 0.1f);
+        }
+
+        isDown = false;
+    }
+
+    public void PressAndReleaseAfter(float t)
+    {
+        StartCoroutine(PressAndRelease(t));
+
+    }
+
+    IEnumerator PressAndRelease(float t)
+    {
+        PressVisual();
+        yield return new WaitForSeconds(t);
+        ReleaseVisual();
     }
 }
