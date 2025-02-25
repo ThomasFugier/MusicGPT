@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: d05f9a10c23d3426fa5198463b1b346d
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 231622
+  packageName: REST API Handler
+  packageVersion: 1.1
+  assetPath: Assets/REST_API_PLUGIN/Scenes/APIExampleScene.unity
+  uploadId: 543486

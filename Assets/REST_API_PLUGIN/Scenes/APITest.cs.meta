@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 20c59214372174b4192dfa9c3ba5e991
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 231622
+  packageName: REST API Handler
+  packageVersion: 1.1
+  assetPath: Assets/REST_API_PLUGIN/Scenes/APITest.cs
+  uploadId: 543486

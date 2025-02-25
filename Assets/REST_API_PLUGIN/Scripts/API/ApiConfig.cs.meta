@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 69b3cd5b21f75408bbfb18535adee724
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 231622
+  packageName: REST API Handler
+  packageVersion: 1.1
+  assetPath: Assets/REST_API_PLUGIN/Scripts/API/ApiConfig.cs
+  uploadId: 543486

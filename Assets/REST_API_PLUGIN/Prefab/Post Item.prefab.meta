@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: fd78da7fee96f439da835d744ba19394
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 231622
+  packageName: REST API Handler
+  packageVersion: 1.1
+  assetPath: Assets/REST_API_PLUGIN/Prefab/Post Item.prefab
+  uploadId: 543486

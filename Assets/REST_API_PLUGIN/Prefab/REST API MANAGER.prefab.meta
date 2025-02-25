@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 3d4462ca6e229470d91de8e9ff36fa2e
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 231622
+  packageName: REST API Handler
+  packageVersion: 1.1
+  assetPath: Assets/REST_API_PLUGIN/Prefab/REST API MANAGER.prefab
+  uploadId: 543486
