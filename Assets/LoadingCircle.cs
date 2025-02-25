@@ -24,6 +24,7 @@ public class LoadingCircle : MonoBehaviour
     // Fonction pour démarrer le cercle de chargement
     public void On()
     {
+        this.transform.rotation = Quaternion.identity;
         // Rotation continue de l'image
         rotateTween = loadingImage.transform.DORotate(new Vector3(0, 0, 360), rotationDuration, RotateMode.FastBeyond360).SetLoops(-1, LoopType.Restart);
 
@@ -34,10 +35,12 @@ public class LoadingCircle : MonoBehaviour
     // Fonction pour arrêter le cercle de chargement
     public void Off()
     {
-        Debug.Log("ICI");
-
         // Arrêt de la rotation
-        if (rotateTween != null) rotateTween.Kill();
+        if (rotateTween != null)
+        {
+            rotateTween.Kill();
+        }
+            
 
         // Disparition avec un fade-out
         fadeTween = loadingImage.DOFade(minAlpha, fadeDuration).OnKill(() => fadeTween = null);
