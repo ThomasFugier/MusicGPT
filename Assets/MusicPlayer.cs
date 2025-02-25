@@ -176,9 +176,22 @@ public class MusicPlayer : MonoBehaviour
         SetTonalite();
     }
 
-    public void PlayPartition()
+    
+    public void PlayPartition(string p = "")
     {
-        Partition partition = JsonUtility.FromJson<Partition>(partitionTextAsset.text);
+        Partition partition = new Partition();
+
+        if (p == "")
+        {
+            partition = JsonUtility.FromJson<Partition>(partitionTextAsset.text);
+    
+        }
+
+        else
+        {
+            partition = JsonUtility.FromJson<Partition>(p);
+        }
+
         StartCoroutine(PlayPartition(partition));
     }
 

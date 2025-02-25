@@ -8,13 +8,29 @@ public class ManagerAPI : MonoBehaviour
 {
     public string apiKey = "Ytf6eSQOsfrMccW54pfRn6KbfqXX85jSD"; // Remplace par ta clé API Mistral
     private string apiUrl = "https://api.mistral.ai/v1/chat/completions"; // URL de l'API
-    [TextArea(50, 50)]
+    [TextArea(20, 20)]
     public string basePrompt;
     public string prompt;
 
+    public MusicPlayer musicPlayer;
+    public string receivedMessage;
+
+    public TMPro.TextMeshProUGUI inputPrompt;
+    public UnityEngine.UI.Button askButton;
+
+    public void Ask()
+    {
+        string s = inputPrompt.text;
+        inputPrompt.text = "";
+
+        prompt = "(" + s + ")";
+
+        StartCoroutine(SendChatRequest());
+    }
+
     void Start()
     {
-        StartCoroutine(SendChatRequest());
+
     }
 
     IEnumerator SendChatRequest()
@@ -38,15 +54,18 @@ public class ManagerAPI : MonoBehaviour
         {
             Debug.Log("Response: " + request.downloadHandler.text);
         }
+
         else
         {
             Debug.LogError("Request failed: " + request.error);
         }
 
-        string jsonResponse = "{\"id\":\"07db81c8f4f841e9a45efd187ec88522\",\"object\":\"chat.completion\",...}"; // Ta réponse complète JSON
+        string jsonResponse = "{\"id\":\"07db81c8f4f841e9a45efd187ec88522\",\"object\":\"chat.completion\",...}";
         string messageContent = ApiUtils.DecodeResponse(request.downloadHandler.text);
 
-        Debug.Log(messageContent);  
+        receivedMessage = messageContent.Substring(8);
+        receivedMessage = receivedMessage.Substring(0, receivedMessage.Length - 4);
+        musicPlayer.PlayPartition(receivedMessage);
     }
 
     [Serializable]
