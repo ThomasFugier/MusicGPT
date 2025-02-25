@@ -18,6 +18,8 @@ public class ManagerAPI : MonoBehaviour
     public TMPro.TextMeshProUGUI inputPrompt;
     public UnityEngine.UI.Button askButton;
 
+    public LoadingButton loadingButton;
+
     public void Ask()
     {
         string s = inputPrompt.text;
@@ -66,6 +68,8 @@ public class ManagerAPI : MonoBehaviour
         receivedMessage = messageContent.Substring(8);
         receivedMessage = receivedMessage.Substring(0, receivedMessage.Length - 4);
         musicPlayer.PlayPartition(receivedMessage);
+
+        loadingButton.TurnButtonBack();
     }
 
     [Serializable]
