@@ -23,7 +23,7 @@ public class ManagerAPI : MonoBehaviour
     public void Ask()
     {
         string s = inputPrompt.text;
-        //inputPrompt.text = "";
+        inputPrompt.text = "";
 
         prompt = "(" + s + ")";
 
@@ -38,7 +38,7 @@ public class ManagerAPI : MonoBehaviour
     IEnumerator SendChatRequest()
     {
         // Construire le contenu du message avec basePrompt et prompt
-        string fullPrompt = basePrompt + " Le thème choisi pour la composition est = " + prompt;
+        string fullPrompt = basePrompt + " " + prompt ;
 
         // Construire les données de la requête JSON
         string jsonData = "{\"model\":\"mistral-large-latest\",\"messages\":[{\"role\":\"user\",\"content\":\"" + fullPrompt + "\"}]}";
@@ -59,7 +59,7 @@ public class ManagerAPI : MonoBehaviour
 
         else
         {
-            Debug.LogError("Request failed: " + request.error + "Request = " + jsonData);
+            Debug.LogError("Request failed: " + request.error);
         }
 
         string jsonResponse = "{\"id\":\"07db81c8f4f841e9a45efd187ec88522\",\"object\":\"chat.completion\",...}";
