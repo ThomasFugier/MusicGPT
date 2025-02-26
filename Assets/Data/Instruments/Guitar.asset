@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Guitar
   m_EditorClassIdentifier: 
   icon: {fileID: 1987564789, guid: 936ab7c92f11d3c46adc89b35d713e92, type: 3}
-  volume: 0.5
+  volume: 0.3
   instrumentName: Guitar
   instrumentSamples:
   - {fileID: 8300000, guid: af1000698c112734295e12dbfa7c574a, type: 3}
