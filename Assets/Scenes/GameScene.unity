@@ -2446,22 +2446,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   apiKey: tf6eSQOsfrMccW54pfRn6KbfqXX85jSD
-  basePrompt: "G\xE9n\xE8re une composition musicale au format JSON valide sous forme
-    d'un objet contenant une cl\xE9 tracks, qui est une liste de pistes. Chaque piste
-    est repr\xE9sent\xE9e par un objet avec trackNumber (entier identifiant la piste)
-    et blocks (liste de blocs musicaux). Chaque bloc musical est un objet avec type
-    (valeur possible : note pour une note unique, chord pour un accord de 3 \xE0
-    5 notes, ou X pour un silence), value (une cha\xEEne repr\xE9sentant la note,
-    un accord sous forme de notes s\xE9par\xE9es par des | (Ecrit [note|note|note|,
-    un accord doit commencer et finir par un |, ou X pour un silence), et duration
-    (valeur parmi whole, half, quarter, eighth, sixteenth, thirtysecond). Une note
-    doit etre suivi du num\xE9ro d'octave par exemple C4 et le diez doit etre entre
-    la note et l'octave par exemple C#5, joue plutot entre 4 et 6 octaves mais tu
-    peux d\xE9passer. . Ne r\xE9pond pas avec du texte, uniquement un Json directement
-    que tu peux \xE9crire tout \xE0 la ligne si c'est plus optimis\xE9 pour toi,
-    essaye de faire un morceau qui dure un certain temps et fais attention \xE0 ce
-    que la supperposition des tracks soit harmonieuse et asynchrone. Fais bien attention
-    aux informations suivantes. Le th\xE8me de la composition est :"
+  basePrompt: "G\xE9n\xE8re un JSON (Attention ne m'\xE9cris aucun texte autre que
+    le JSON) avec (tracks) : [liste], chaque piste a (trackNumber) : (int) et (blocks)
+    : [liste], chaque bloc a (type) : (note, chord, X), (value) : (C4, |C4|E4|G4|,
+    X), (duration) : (whole, half, quarter, eighth, sixteenth, thirtysecond), notes
+    entre 4-6 octaves, accords 3-5 notes, harmonieux et asynchrone, nombre de blocks
+    moyen 15,  prend en compte les instruments demand\xE9s pour le nombre de tracks,
+    th\xE8me : "
   prompt: (Quelque chose de joyeux)
   musicPlayer: {fileID: 893879876}
   receivedMessage: 
