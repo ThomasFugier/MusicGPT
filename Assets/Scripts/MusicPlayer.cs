@@ -521,7 +521,7 @@ public class MusicPlayer : MonoBehaviour
             source.pitch = pitchFactor;     // Appliquer le pitch
             source.PlayOneShot(source.clip, instrument.volume);
 
-            keyboard.PlayVisual(note, duration);
+            keyboard.PlayVisual(note, duration, instrument.color);
 
             // D�truire l'objet apr�s avoir jou� la note
             StartCoroutine(DestroyAfterPlaying(noteObject, source));
@@ -531,7 +531,7 @@ public class MusicPlayer : MonoBehaviour
 
         catch (System.Exception e)
         {
-            Debug.LogError("Error in PlaySingleNote: " + noteIndexDebug);
+            Debug.LogError("Error in PlaySingleNote: " + note);
         }
 
         return null;

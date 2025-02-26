@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf05a8806c419a649af7e93d15ff78bf, type: 3}
   m_Name: Piano
   m_EditorClassIdentifier: 
+  icon: {fileID: 1006655380, guid: 42ce4abf904030a42968e4750eef767b, type: 3}
+  volume: 1
   instrumentName: Piano
   instrumentSamples:
   - {fileID: 8300000, guid: cc0f8c51492ac41478ad946e806a5456, type: 3}
@@ -26,3 +28,4 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4989aa604773e5840a8cfc9b533448d5, type: 3}
   - {fileID: 8300000, guid: e9fa8f0aae8e05a4591999b4251cf010, type: 3}
   - {fileID: 8300000, guid: 5c533ec841c15e340a0e376d1072bda7, type: 3}
+  color: {r: 0, g: 0.48477888, b: 1, a: 1}

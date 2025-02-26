@@ -20,6 +20,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
 
     private bool isDown;
     public bool isWhiteTile;
+    public UnityEngine.UI.Image highlightImage;
 
     public void Update()
     {
@@ -135,8 +136,10 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
         ReleaseVisual();
     }
 
-    private void PressVisual()
+    private void PressVisual(Color c = default)
     {
+        if (c == default) c = Color.clear;
+
         transform.DOKill();
         transform.localScale = Vector3.one;
         transform.DOScale(Vector3.one * 0.9f, 0.1f);
@@ -152,6 +155,23 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
         }
 
         isDown = true;
+
+        FlashTrack(c);
+    }
+
+    public void FlashTrack(Color c)
+    {
+        Color ca = c;
+        ca.a = 0;
+
+        highlightImage.color = ca;
+
+        highlightImage.DOColor(c, 0.2f).SetEase(Ease.InOutSine).OnComplete(() =>
+        {
+            Color fadedColor = highlightImage.color;
+            fadedColor.a = 0;
+            highlightImage.color = fadedColor;
+        });
     }
 
     private void ReleaseVisual()
@@ -172,15 +192,15 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
         isDown = false;
     }
 
-    public void PressAndReleaseAfter(float t)
+    public void PressAndReleaseAfter(float t, Color c)
     {
-        StartCoroutine(PressAndRelease(t));
+        StartCoroutine(PressAndRelease(t, c));
 
     }
 
-    IEnumerator PressAndRelease(float t)
+    IEnumerator PressAndRelease(float t, Color c)
     {
-        PressVisual();
+        PressVisual(c);
         yield return new WaitForSeconds(t);
         ReleaseVisual();
     }

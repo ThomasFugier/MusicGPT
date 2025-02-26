@@ -14,11 +14,15 @@ public class ManagerAPI : MonoBehaviour
 
     public MusicPlayer musicPlayer;
     public string receivedMessage;
+    [TextArea(20, 20)]
+    public string sentMessage;
 
     public TMPro.TextMeshProUGUI inputPrompt;
     public UnityEngine.UI.Button askButton;
 
     public LoadingButton loadingButton;
+
+    public InstrumentSelection instrumentSelection;
 
     public void Ask()
     {
@@ -40,9 +44,21 @@ public class ManagerAPI : MonoBehaviour
         // Construire le contenu du message avec basePrompt et prompt
         string fullPrompt = basePrompt + " " + prompt ;
 
+        string selectedInstruments = "";
+
+        for(int i = 0; i < instrumentSelection.selectedInstruments.Count; i++)
+        {
+            selectedInstruments += instrumentSelection.selectedInstruments[i].instrument.name;
+            selectedInstruments += " ET ";
+        }
+
+        fullPrompt += "Aussi, voici quelques informations importantes concernant la créativité musicale : Les instruments séléctionné sont : " + selectedInstruments;
+
         // Construire les données de la requête JSON
         string jsonData = "{\"model\":\"mistral-large-latest\",\"messages\":[{\"role\":\"user\",\"content\":\"" + fullPrompt + "\"}]}";
 
+        sentMessage = jsonData;
+        
         // Créer la requête
         UnityWebRequest request = UnityWebRequest.Put(apiUrl, jsonData);
         request.method = UnityWebRequest.kHttpVerbPOST;

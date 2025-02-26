@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf05a8806c419a649af7e93d15ff78bf, type: 3}
+  m_Name: Bass
+  m_EditorClassIdentifier: 
+  icon: {fileID: 369410294, guid: 9550e34f39577ef40a3c013a511d35f2, type: 3}
+  volume: 2
+  instrumentName: Bass
+  instrumentSamples:
+  - {fileID: 8300000, guid: 27fcacf4ef386ad41be3483ccd3817dd, type: 3}
+  - {fileID: 8300000, guid: f48d990b6c16bd347848dcc9cdaecd11, type: 3}
+  - {fileID: 8300000, guid: 88c3d916d7d7e994eb94af036a4265a6, type: 3}
+  - {fileID: 8300000, guid: 6bf73513ea98da94b865a3994c4cc7c8, type: 3}
+  - {fileID: 8300000, guid: 02671b48b251aa54893116f9345cf3e6, type: 3}
+  - {fileID: 8300000, guid: 2e78248abbc6524439a3dc0d86e69c6c, type: 3}
+  - {fileID: 8300000, guid: 99b1be433930fa342b25011eba1f335b, type: 3}
+  - {fileID: 8300000, guid: ffd74ea9ee59fb74b8243485021d7a8d, type: 3}
+  - {fileID: 8300000, guid: 5128fc2d309fcc94fa196df134bc10cb, type: 3}
+  - {fileID: 8300000, guid: a6998aa27c915bd40ae9dbd4b93f75fd, type: 3}
+  - {fileID: 8300000, guid: ea34dad8a3fd6f24c8ad489cf6dc0c10, type: 3}
+  - {fileID: 8300000, guid: 1d7d4b345375e1f468fb3a62ebdc6d26, type: 3}
+  color: {r: 0.4403944, g: 0, b: 1, a: 1}

@@ -64,10 +64,10 @@ public class Keyboard : MonoBehaviour
 
         note += octaveIndex;
 
-        player.PlayNote(note, 1, null, 0);
+        player.PlayNote(note, 1, null, 1);
     }
 
-    public void PlayVisual(string s, float f)
+    public void PlayVisual(string s, float f, Color c)
     {
         Tonalite tone;
         int octaveIndex;
@@ -92,7 +92,7 @@ public class Keyboard : MonoBehaviour
                 {
                     if (octaves[i].tiles[j].tonalite == tone)
                     {
-                        octaves[i].tiles[j].PressAndReleaseAfter(f);
+                        octaves[i].tiles[j].PressAndReleaseAfter(f, c);
                         break;
                     }
                 }

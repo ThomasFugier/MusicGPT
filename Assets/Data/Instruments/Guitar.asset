@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf05a8806c419a649af7e93d15ff78bf, type: 3}
   m_Name: Guitar
   m_EditorClassIdentifier: 
+  icon: {fileID: 1987564789, guid: 936ab7c92f11d3c46adc89b35d713e92, type: 3}
   volume: 0.5
   instrumentName: Guitar
   instrumentSamples:
@@ -27,3 +28,4 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2c102b83a0d0cf94e8ec9959caea3d03, type: 3}
   - {fileID: 8300000, guid: 4b2e3b37c2a67424eb9b037b56bb0f9b, type: 3}
   - {fileID: 8300000, guid: a95a3fe0ff00384458897ab182d8455b, type: 3}
+  color: {r: 1, g: 0, b: 0, a: 1}
