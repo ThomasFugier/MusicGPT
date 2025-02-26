@@ -2244,28 +2244,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   apiKey: tf6eSQOsfrMccW54pfRn6KbfqXX85jSD
-  basePrompt: "Je veux que tu me g\xE9n\xE8res une composition musicale. Sous un
-    format Json que je vais aussi te mettre en exemple. Tu vas pouvoir g\xE9n\xE9rer
-    des accords entre 3 et 5 notes, des notes seules, des notes #, des notes de diff\xE9rentes
-    octaves entre 3 et 6. Sous le Json qui est l\xE0 uniquement \xE0 titre informatif
-    pour te fournir un exemple de structure, tu trouveras entre parenth\xE8ses, la
-    requ\xEAte pour la composition. N'essaye pas de recopier l'exemple, sers toi
-    en juste pour \xE9tudier les r\xE8gles de composition. Essaye d'\xEAtre original
-    et de composer de la musique interessante en te servant de la th\xE9orie musicale.
-    Ne soit pas redondant et \xE9vite de te r\xE9peter en faisant des mont\xE9e de
-    gamme r\xE9p\xE9titives. et n'h\xE9site pas \xE0 faire un morceau de + de 50
-    blocs. et surtout r\xE9ponds-moi uniquement sous le format Json, je ne veux pas
-    de texte autre.\\n\\nExemple JSON :\\n\\n{\\\"blocks\\\": [\\n  {\\\"type\\\":
-    \\\"note\\\", \\\"value\\\": \\\"C3\\\", \\\"duration\\\": \\\"whole\\\"},\\n 
-    {\\\"type\\\": \\\"note\\\", \\\"value\\\": \\\"D#4\\\", \\\"duration\\\": \\\"half\\\"},\\n 
-    {\\\"type\\\": \\\"note\\\", \\\"value\\\": \\\"F#4\\\", \\\"duration\\\": \\\"quarter\\\"},\\n 
-    {\\\"type\\\": \\\"note\\\", \\\"value\\\": \\\"A6\\\", \\\"duration\\\": \\\"eighth\\\"},\\n 
-    {\\\"type\\\": \\\"note\\\", \\\"value\\\": \\\"C5\\\", \\\"duration\\\": \\\"sixteenth\\\"},\\n 
-    {\\\"type\\\": \\\"note\\\", \\\"value\\\": \\\"C7\\\", \\\"duration\\\": \\\"sixteenth\\\"},\\n 
-    {\\\"type\\\": \\\"chord\\\", \\\"value\\\": \\\"|D5|F5|\\\", \\\"duration\\\":
-    \\\"whole\\\"},\\n  {\\\"type\\\": \\\"chord\\\", \\\"value\\\": \\\"|E5|G#5|B5|\\\",
-    \\\"duration\\\": \\\"half\\\"},\\n  {\\\"type\\\": \\\"chord\\\", \\\"value\\\":
-    \\\"|E5|G5|B5|\\\", \\\"duration\\\": \\\"quarter\\\"}\\n]}"
+  basePrompt: "G\xE9n\xE8re une composition musicale en JSON en respectant ces \xE9tapes
+    : interpr\xE8te la demande, choisis une tonalit\xE9, d\xE9finis une progression
+    d'accords et construis une m\xE9lodie coh\xE9rente en \xE9vitant les mont\xE9es
+    syst\xE9matiques vers les aigus, utilise des notes simples, des accords de 2
+    \xE0 5 notes, des di\xE8ses (#), des dur\xE9es vari\xE9es et au moins 15 blocs
+    musicaux, assure une structure musicale int\xE9ressante et harmonieuse en appliquant
+    des principes de th\xE9orie musicale ; formate le tout en JSON sous forme de
+    liste de (blocks). Chaque (block) peut \xEAtre soit une (note), soit un (chord).
+    Utilise les param\xE8tres suivants : (type) (d\xE9finit si c'est une (note) ou
+    un (chord)), (value) (pour une note, c'est son nom et son octave, ex: (C4 ou
+    C#4) ; , essaye de jouer dans une tonalit\xE9 diff\xE9rente du Do, pour un accord,
+    liste les notes s\xE9par\xE9es par des barres verticales, ex: (|note|note|note|)
+    ou encore (|note|note|note|note|), et (duration) (d\xE9finit la dur\xE9e, valeurs
+    possibles : (whole), (half), (quarter), (eighth), (sixteenth), (thirtysecond))
+    ; exemple de json {\\\"blocks\\\":[{\\\"type\\\": \\\"note or chord\\\",\\\"value\\\":
+    \\\"|note|note|note|\\\",\\\"duration\\\": \\\"durationvalue\\\"}]} r\xE9ponds
+    uniquement en JSON sans aucun texte suppl\xE9mentaire."
   prompt: (Quelque chose de joyeux)
   musicPlayer: {fileID: 893879876}
   receivedMessage: 
