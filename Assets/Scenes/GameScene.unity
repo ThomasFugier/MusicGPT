@@ -2255,10 +2255,9 @@ MonoBehaviour:
     (valeur parmi whole, half, quarter, eighth, sixteenth, thirtysecond). Une note
     doit etre suivi du num\xE9ro d'octave par exemple C4 et le diez doit etre entre
     la note et l'octave par exemple C#5, joue plutot entre 4 et 6 octaves mais tu
-    peux d\xE9passer. Essaye de calculer les durations pour que toutes les pistes
-    finissent en m\xEAme temps. Ne r\xE9pond pas avec du texte, uniquement un Json
-    directement que tu peux \xE9crire tout \xE0 la ligne si c'est plus optimis\xE9
-    pour toi, essaye de faire un morceau qui dure un certain temps, Fais bien 2 tracks."
+    peux d\xE9passer. . Ne r\xE9pond pas avec du texte, uniquement un Json directement
+    que tu peux \xE9crire tout \xE0 la ligne si c'est plus optimis\xE9 pour toi,
+    essaye de faire un morceau qui dure un certain temps, Fais bien 2 tracks."
   prompt: (Quelque chose de joyeux)
   musicPlayer: {fileID: 893879876}
   receivedMessage: 
