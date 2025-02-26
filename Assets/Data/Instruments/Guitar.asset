@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf05a8806c419a649af7e93d15ff78bf, type: 3}
+  m_Name: Guitar
+  m_EditorClassIdentifier: 
+  instrumentName: Guitar
+  instrumentSamples:
+  - {fileID: 8300000, guid: af1000698c112734295e12dbfa7c574a, type: 3}
+  - {fileID: 8300000, guid: 3ae7f87f9e9019d4bad2db8a4d0979d9, type: 3}
+  - {fileID: 8300000, guid: 901914c98fe545249a01768a6388d687, type: 3}
+  - {fileID: 8300000, guid: e5264d6e7639ed244be4c8e68ba8dbda, type: 3}
+  - {fileID: 8300000, guid: 18244815ef2730f418af6cf1057b9656, type: 3}
+  - {fileID: 8300000, guid: 576aee34ce5b3c14dac2adde0051c80d, type: 3}
+  - {fileID: 8300000, guid: 96701d667e51080488ae2e5df6064479, type: 3}
+  - {fileID: 8300000, guid: 6763c4faff05e9741a5e14773b1bffca, type: 3}
+  - {fileID: 8300000, guid: a793347911f5c9f4d84caffa61123aa3, type: 3}
+  - {fileID: 8300000, guid: 2c102b83a0d0cf94e8ec9959caea3d03, type: 3}
+  - {fileID: 8300000, guid: 4b2e3b37c2a67424eb9b037b56bb0f9b, type: 3}
+  - {fileID: 8300000, guid: a95a3fe0ff00384458897ab182d8455b, type: 3}

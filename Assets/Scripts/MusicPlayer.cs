@@ -99,8 +99,9 @@ public class MusicPlayer : MonoBehaviour
 
     [Space]
     [Header("References")]
+    public Instrument[] instruments;
     public Settings settings;
-    public AudioClip[] notes;
+
     public Keyboard keyboard;
     public AudioSource baseWave;
 
@@ -645,7 +646,7 @@ public class MusicPlayer : MonoBehaviour
 
             // Cr�er le composant AudioSource et jouer la note
             AudioSource source = noteObject.AddComponent<AudioSource>();
-            source.clip = notes[noteIndex];  // Utiliser le m�me fichier audio
+            source.clip = instruments[0].instrumentSamples[noteIndex];  // Utiliser le m�me fichier audio
             source.pitch = pitchFactor;     // Appliquer le pitch
             source.Play();
 
