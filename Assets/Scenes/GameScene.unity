@@ -2250,8 +2250,15 @@ MonoBehaviour:
     et blocks (liste de blocs musicaux). Chaque bloc musical est un objet avec type
     (valeur possible : note pour une note unique, chord pour un accord de 3 \xE0
     5 notes, ou rest pour un silence), value (une cha\xEEne repr\xE9sentant la note,
-    un accord sous forme de notes s\xE9par\xE9es par des |, ou X pour un silence),
-    et duration (valeur parmi whole, half, quarter, eighth, sixteenth, thirtysecond)."
+    un accord sous forme de notes s\xE9par\xE9es par des | (Ecrit [note|note|note|,
+    un accord doit commencer et finir par un |, ou X pour un silence), et duration
+    (valeur parmi whole, half, quarter, eighth, sixteenth, thirtysecond). Une note
+    doit etre suivi du num\xE9ro d'octave par exemple C4 et le diez doit etre entre
+    la note et l'octave par exemple C#5, joue plutot entre 4 et 6 octaves mais tu
+    peux d\xE9passer. Essaye de calculer les durations pour que toutes les pistes
+    finissent en m\xEAme temps. Ne r\xE9pond pas avec du texte, uniquement un Json
+    directement que tu peux \xE9crire tout \xE0 la ligne si c'est plus optimis\xE9
+    pour toi, essaye de faire un morceau qui dure un certain temps, Fais bien 2 tracks."
   prompt: (Quelque chose de joyeux)
   musicPlayer: {fileID: 893879876}
   receivedMessage: 
