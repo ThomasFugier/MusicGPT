@@ -1,17 +1,53 @@
 {
-  "blocks": [
-    {"type": "chord", "value": "|C4|E4|G4|", "duration": "whole"},
-    {"type": "note", "value": "E4", "duration": "half"},
-    {"type": "chord", "value": "|F4|A4|C5|", "duration": "half"},
-    {"type": "note", "value": "G4", "duration": "quarter"},
-    {"type": "note", "value": "A4", "duration": "quarter"},
-    {"type": "chord", "value": "|G4|B4|D5|", "duration": "quarter"},
-    {"type": "note", "value": "C5", "duration": "eighth"},
-    {"type": "note", "value": "B4", "duration": "eighth"},
-    {"type": "chord", "value": "|C5|E5|G5|", "duration": "quarter"},
-    {"type": "note", "value": "D5", "duration": "quarter"},
-    {"type": "chord", "value": "|E5|G#5|B5|", "duration": "half"},
-    {"type": "note", "value": "F5", "duration": "half"},
-    {"type": "chord", "value": "|G5|B5|D6|", "duration": "whole"}
+  "tracks": [
+    {
+      "trackNumber": 1,
+      "blocks": [
+        {"type": "note", "value": "E5", "duration": "eighth"},
+        {"type": "note", "value": "G5", "duration": "eighth"},
+        {"type": "note", "value": "A5", "duration": "quarter"},
+        {"type": "note", "value": "X", "duration": "eighth"},
+        {"type": "note", "value": "F5", "duration": "eighth"},
+        {"type": "note", "value": "E5", "duration": "quarter"},
+        {"type": "note", "value": "C5", "duration": "quarter"},
+        {"type": "note", "value": "X", "duration": "quarter"},
+
+        {"type": "note", "value": "D5", "duration": "eighth"},
+        {"type": "note", "value": "F5", "duration": "eighth"},
+        {"type": "note", "value": "G5", "duration": "quarter"},
+        {"type": "note", "value": "B5", "duration": "quarter"},
+        {"type": "note", "value": "A5", "duration": "eighth"},
+        {"type": "note", "value": "G5", "duration": "eighth"},
+        {"type": "note", "value": "E5", "duration": "half"},
+        {"type": "note", "value": "X", "duration": "quarter"},
+
+        {"type": "note", "value": "C6", "duration": "quarter"},
+        {"type": "note", "value": "B5", "duration": "eighth"},
+        {"type": "note", "value": "A5", "duration": "eighth"},
+        {"type": "note", "value": "G5", "duration": "half"},
+        {"type": "note", "value": "X", "duration": "quarter"},
+
+        {"type": "note", "value": "E5", "duration": "whole"}
+      ]
+    },
+    {
+      "trackNumber": 2,
+      "blocks": [
+        {"type": "chord", "value": "|C4|E4|G4|", "duration": "whole"},
+        {"type": "chord", "value": "|F4|A4|C5|", "duration": "half"},
+        {"type": "chord", "value": "X", "duration": "quarter"},
+
+        {"type": "chord", "value": "|G4|B4|D5|", "duration": "quarter"},
+        {"type": "chord", "value": "|A4|C5|E5|", "duration": "half"},
+        {"type": "chord", "value": "X", "duration": "quarter"},
+
+        {"type": "chord", "value": "|F4|A4|D5|", "duration": "quarter"},
+        {"type": "chord", "value": "|G4|B4|E5|", "duration": "quarter"},
+        {"type": "chord", "value": "|C5|E5|G5|", "duration": "whole"},
+        {"type": "chord", "value": "X", "duration": "half"},
+
+        {"type": "chord", "value": "|C5|F5|A5|", "duration": "whole"}
+      ]
+    }
   ]
 }

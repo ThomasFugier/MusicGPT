@@ -64,7 +64,7 @@ public class Keyboard : MonoBehaviour
 
         note += octaveIndex;
 
-        player.PlayNote(note, 1, null);
+        player.PlayNote(note, 1, null, 0);
     }
 
     public void PlayVisual(string s, float f)
