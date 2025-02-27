@@ -2447,12 +2447,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   apiKey: tf6eSQOsfrMccW54pfRn6KbfqXX85jSD
   basePrompt: "G\xE9n\xE8re un JSON (Attention ne m'\xE9cris aucun texte autre que
-    le JSON) avec (tracks) : [liste], chaque piste a (trackNumber) : (int) et (blocks)
-    : [liste], chaque bloc a (type) : (note, chord, X), (value) : (C4, |C4|E4|G4|,
-    X), (duration) : (whole, half, quarter, eighth, sixteenth, thirtysecond), notes
-    entre 4-6 octaves, accords 3-5 notes, harmonieux et asynchrone, nombre de blocks
-    moyen 15,  prend en compte les instruments demand\xE9s pour le nombre de tracks,
-    th\xE8me : "
+    le JSON) avec une ou plusieurs tracks selon le nombre d'instruments (tracks)
+    : [liste], chaque piste a (trackNumber) : (int) et (blocks) : [liste], chaque
+    bloc a (type) : (note, chord, X), (value) : (note, |note|note|note|, X), (duration)
+    : (whole, half, quarter, eighth, sixteenth, thirtysecond), notes entre 5-6 octaves,
+    une note s'\xE9crit C5 ou C#5, accords 3-5 notes, harmonieux et asynchrone, la
+    valeur (X) peut servir \xE0 marquer des temps morts. nombre de blocks moyen 25, 
+    Tu peux varier les accords et le nombre de notes dans un accord, fais des accords
+    diff\xE9rents (Pas toujours tonique tierce quinte majeur), definie d'abord une
+    suite d'accord et garde l\xE0 pour le reste du morceau, si il y a plusieurs tracks,
+    si il y a 3 tracks, joue moins de notes. essaye d'en choisir une pour un accompagnement
+    discret et une autre pour une melodie par exemple. Je veux que tu trouve une
+    suite d'accords par exemple R\xE9 Majeur, Do majeur Sol et que tu composes autour
+    de \xE7a comme un refrain .Les deux tracks doivent pouvoir etre lues en m\xEAme
+    temps et produire une seule et m\xEAme musique. prend en compte les instruments
+    demand\xE9s pour le nombre de tracks et n'h\xE9site pas \xE0 etre cr\xE9atif,
+    essaye de faire quelque chose de vari\xE9 tout au long de la composition., th\xE8me
+    : "
   prompt: (Quelque chose de joyeux)
   musicPlayer: {fileID: 893879876}
   receivedMessage: 
@@ -10073,7 +10084,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: tempo
-      value: 150
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 9154149439274117112, guid: 02d276a3a0da51c47b4dbb51358ef32e, type: 3}
       propertyPath: sustain

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bass
   m_EditorClassIdentifier: 
   icon: {fileID: 369410294, guid: 9550e34f39577ef40a3c013a511d35f2, type: 3}
-  volume: 1.4
+  volume: 1.1
   instrumentName: Bass
   instrumentSamples:
   - {fileID: 8300000, guid: 27fcacf4ef386ad41be3483ccd3817dd, type: 3}

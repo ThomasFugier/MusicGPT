@@ -49,8 +49,15 @@ public class ManagerAPI : MonoBehaviour
         for(int i = 0; i < instrumentSelection.selectedInstruments.Count; i++)
         {
             selectedInstruments += instrumentSelection.selectedInstruments[i].instrument.name;
-            selectedInstruments += " ET ";
+
+            if(i < instrumentSelection.selectedInstruments.Count - 1)
+            {
+                selectedInstruments += " ET ";
+            }
+           
         }
+
+        selectedInstruments += " donc il faut " + instrumentSelection.selectedInstruments.Count.ToString() + " tracks seulement";
 
         fullPrompt += "Aussi, voici quelques informations importantes concernant la créativité musicale : Les instruments séléctionné sont : " + selectedInstruments;
 
